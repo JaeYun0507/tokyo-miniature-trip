@@ -2,98 +2,93 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#f6f5ef">
-<title>Tokyo, in miniature · 도쿄 여행 플래너</title>
-<meta name="description" content="도쿄타워 주변을 탐험하는 인터랙티브 3D 여행 플래너">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#cfe4f2">
+<title>Tokyo, by the hour · 시간으로 걷는 도쿄</title>
+<meta name="description" content="하루를 시간 순서로 걷는 도쿄 여행 플래너. 타임라인을 움직이면 하늘이 바뀌고 도쿄타워에 불이 켜져요.">
 <link rel="canonical" href="https://jaeyun0507.github.io/tokyo-miniature-trip/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23f6f5ef'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' font-family='serif' fill='%23222'%3Et.%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23e2452b'/%3E%3Ctext x='16' y='23' font-size='19' text-anchor='middle' font-family='serif' fill='%23fff'%3E%E6%9D%B1%3C/text%3E%3C/svg%3E">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:site_name" content="Tokyo, in miniature">
-<meta property="og:title" content="Tokyo, in miniature · 도쿄 여행 플래너">
-<meta property="og:description" content="도쿄타워 주변을 탐험하는 인터랙티브 3D 여행 플래너">
+<meta property="og:site_name" content="Tokyo, by the hour">
+<meta property="og:title" content="Tokyo, by the hour · 시간으로 걷는 도쿄">
+<meta property="og:description" content="하루를 시간 순서로 걷는 도쿄 여행 플래너. 타임라인을 움직이면 하늘이 바뀌고 도쿄타워에 불이 켜져요.">
 <meta property="og:url" content="https://jaeyun0507.github.io/tokyo-miniature-trip/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tokyo, in miniature · 도쿄 여행 플래너">
-<meta name="twitter:description" content="도쿄타워 주변을 탐험하는 인터랙티브 3D 여행 플래너">
+<meta name="twitter:title" content="Tokyo, by the hour · 시간으로 걷는 도쿄">
+<meta name="twitter:description" content="하루를 시간 순서로 걷는 도쿄 여행 플래너. 타임라인을 움직이면 하늘이 바뀌고 도쿄타워에 불이 켜져요.">
 <link rel="stylesheet" href="style.css">
 <script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
 </head>
-<body>
-<header>
-  <a class="brand" href="./"><span class="brand-mark">t.</span><span>tokyo<span class="brand-small">IN MINIATURE</span></span></a>
-  <nav aria-label="여행 날짜">
-    <button class="day active" data-day="1">Day 1 <small>도쿄타워</small></button>
-    <button class="day" data-day="2">Day 2</button>
-    <button class="day" data-day="3">Day 3</button>
-    <button class="day" data-day="4">Day 4</button>
+<body data-tone="day">
+<div id="stage"><div id="canvas"></div><div id="pins"></div></div>
+
+<header class="top">
+  <a class="brand" href="./" aria-label="Tokyo, by the hour 처음으로">
+    <span class="brand-kanji">東京</span>
+    <span class="brand-text">by the hour</span>
+  </a>
+  <nav class="days" aria-label="여행 날짜">
+    <button class="day active" data-day="1" aria-current="true">1</button>
+    <button class="day" data-day="2">2</button>
+    <button class="day" data-day="3">3</button>
+    <button class="day" data-day="4">4</button>
+    <span class="days-label">3박 4일</span>
   </nav>
-  <span class="trip-label">나의 도쿄 · 3박 4일</span>
+  <button id="open-plan" class="ghost">일정 조정</button>
 </header>
-<main>
-  <aside id="itinerary">
-    <div class="intro">
-      <span class="eyebrow">DAY 01 / MINATO, TOKYO</span>
-      <h1>도쿄타워를<br>따라 걷는 하루<span>⟡</span></h1>
-      <p>공원에서 커피 한 잔, 그리고 도쿄의 하늘.</p>
-    </div>
-    <div class="planner">
-      <label>출발 시간 <input id="start" type="time" value="10:00"></label>
-      <label>여행 속도
-        <select id="pace">
-          <option value="1">여유롭게</option>
-          <option value="0.75">가볍게</option>
-          <option value="1.25">천천히</option>
-        </select>
-      </label>
-      <button id="plan">일정 다시 계획하기 ↗</button>
-    </div>
-    <div class="summary">
-      <div><b id="distance">-</b><span>장소 간 이동 · 추정</span></div>
-      <div><b id="duration">-</b><span>관광·휴식 포함</span></div>
-    </div>
-    <div id="cards">
-      <ol>
-        <li><h3>시바공원 (Shiba Park)</h3><p>도쿄타워를 바라보며 초록빛 산책로를 걸어요. 사진을 찍고 천천히 하루를 시작하기 좋은 첫 장소.</p></li>
-        <li><h3>조조지 (Zōjō-ji Temple)</h3><p>오래된 사찰의 지붕 너머로 도쿄타워가 솟아 있어요. 경내와 산게다쓰몬을 천천히 둘러보세요.</p></li>
-        <li><h3>공원 옆 카페</h3><p>공원 옆 베이커리 카페에서 빵과 커피로 쉬어가는 점심.</p></li>
-        <li><h3>도쿄타워 (Tokyo Tower)</h3><p>도쿄를 상징하는 오렌지빛 철탑. 전망대에서 도시를 내려다보고 아래층에서 작은 기념품을 골라보세요.</p></li>
-        <li><h3>아자부다이 힐즈 (Azabudai Hills)</h3><p>곡선형 건축과 녹색 광장, 상점과 마켓이 이어지는 마지막 코스. 가미야초역과 연결돼 있어요.</p></li>
-      </ol>
-    </div>
-    <div class="aside-note">영업시간은 여행일에 다시 확인해 주세요.<br>이동시간은 대기·교통 상황에 따라 달라집니다.</div>
-  </aside>
-  <section id="map" aria-label="도쿄 3D 여행 지도">
-    <div id="canvas"></div>
-    <div id="pins"></div>
-    <div class="map-heading"><span class="eyebrow">YOUR LITTLE TOKYO</span><h2>Tokyo Tower &amp; around</h2><span class="map-live">3D 도시 탐험</span></div>
-    <div id="map-status">도쿄의 작은 거리를 준비하고 있어요…</div>
-    <div class="map-tools">
-      <button id="north" title="북쪽으로 정렬" aria-label="북쪽으로 정렬">N ↑</button>
-      <button id="zoom-in" aria-label="지도 확대">＋</button>
-      <button id="zoom-out" aria-label="지도 축소">−</button>
-      <button id="reset" aria-label="전체 동선 보기">⌖</button>
-      <button id="motion" aria-label="도시 움직임 일시정지">Ⅱ</button>
-    </div>
-    <div class="map-hint">드래그 이동 · 휠/핀치 확대 · 우클릭 회전</div>
-    <div class="legend"><span><i class="walk"></i>도보</span><span><i class="taxi"></i>택시</span><span><i class="subway"></i>지하철</span></div>
-    <div id="details" hidden></div>
-    <div class="player">
-      <button id="play" aria-label="여행 동선 재생">▶</button>
-      <div><b id="play-label">오늘의 동선을 미리 걸어보세요</b><span id="play-sub">5곳의 작은 발견 · Day 1</span></div>
-      <input id="progress" type="range" min="0" max="1000" value="0" aria-label="여행 진행 위치">
-      <button id="next" aria-label="다음 장소">↦</button>
-    </div>
-    <div class="attribution">도로·건물은 개략 재해석 · 실제 장소 좌표 · 경로·시간 추정 · 지도 데이터 원본: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors</a></div>
-    <div id="empty-day" hidden>
-      <span class="eyebrow">YOUR NEXT CHAPTER</span>
-      <h2 id="empty-title"></h2>
-      <p>이번 프로토타입은 Day 1 도쿄타워 지역을 담고 있어요.<br>나머지 날짜는 아직 계획되지 않았습니다.</p>
-      <button id="back-day">Day 1 둘러보기 →</button>
-    </div>
-  </section>
-</main>
+
+<div class="tools" role="group" aria-label="지도 도구">
+  <button id="zoom-in" aria-label="확대">＋</button>
+  <button id="zoom-out" aria-label="축소">−</button>
+  <button id="overview" aria-label="도시 전체 보기" title="전체 보기">⌖</button>
+</div>
+
+<!-- 스크립트가 시작되면 챕터 카드로 교체돼요. 스크립트 없이도 일정이 읽히도록 둔 정적 내용입니다. -->
+<section id="card" aria-live="polite">
+  <div class="eyebrow">Day 1 · Minato, Tokyo</div>
+  <h2>도쿄타워를 따라 걷는 하루</h2>
+  <ol>
+    <li><b>시바공원 (Shiba Park)</b> — 도쿄타워를 바라보며 초록빛 산책로를 걸어요. 사진을 찍고 천천히 하루를 시작하기 좋은 첫 장소.</li>
+    <li><b>조조지 (Zōjō-ji Temple)</b> — 오래된 사찰의 지붕 너머로 도쿄타워가 솟아 있어요. 경내와 산게다쓰몬을 천천히 둘러보세요.</li>
+    <li><b>공원 옆 카페</b> — 공원 옆 베이커리 카페에서 빵과 커피로 쉬어가는 점심.</li>
+    <li><b>도쿄타워 (Tokyo Tower)</b> — 도쿄를 상징하는 주황빛 철탑. 해 질 무렵 전망대에서 도시에 불이 켜지는 순간을 기다려 보세요.</li>
+    <li><b>아자부다이 힐즈 (Azabudai Hills)</b> — 곡선형 건축과 녹색 광장, 상점과 마켓이 이어지는 마지막 코스. 가미야초역과 연결돼 있어요.</li>
+  </ol>
+</section>
+
+<footer id="line">
+  <button id="play" class="play" aria-label="하루 재생">▶</button>
+  <div class="track">
+    <input id="progress" type="range" min="0" max="1000" value="0" aria-label="하루의 시간 이동">
+    <div id="stations"></div>
+  </div>
+  <div class="clockout" aria-hidden="true"><b id="clock">12:00</b><span id="phase">낮</span></div>
+</footer>
+
+<div id="sheet" hidden>
+  <div class="sheet-body" role="dialog" aria-label="일정 조정">
+    <h3>하루를 어떻게 걸을까요</h3>
+    <label>출발 시간 <input id="start" type="time" value="12:00"></label>
+    <fieldset>
+      <legend>걷는 속도</legend>
+      <label><input type="radio" name="pace" value="0.75"> 가볍게</label>
+      <label><input type="radio" name="pace" value="1" checked> 여유롭게</label>
+      <label><input type="radio" name="pace" value="1.25"> 천천히 오래</label>
+    </fieldset>
+    <div class="sheet-actions"><button id="sheet-cancel" class="ghost">닫기</button><button id="sheet-apply" class="primary">다시 계획하기</button></div>
+  </div>
+</div>
+
+<div id="empty-day" hidden>
+  <span class="eyebrow">NEXT CHAPTER</span>
+  <h2 id="empty-title"></h2>
+  <p>이번 프로토타입은 첫째 날 도쿄타워 일대만 담고 있어요.<br>나머지 날은 아직 비어 있어요.</p>
+  <button id="back-day" class="primary">첫째 날로 돌아가기</button>
+</div>
+
+<div id="map-status">도쿄의 작은 거리를 준비하고 있어요…</div>
+<div class="attribution">도로·건물 지도 데이터 <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors</a> · 미니어처로 재해석 · 경로·시간은 추정</div>
 <div id="toast" role="status"></div>
 <script type="module" src="app.js"></script>
 </body>
