@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f6f5ef">
+<title>Tokyo, in miniature · 도쿄 여행 플래너</title>
+<meta name="description" content="도쿄타워 주변을 탐험하는 인터랙티브 3D 여행 플래너">
+<link rel="stylesheet" href="style.css">
+<script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
+</head>
+<body>
+<header>
+  <a class="brand" href="./"><span class="brand-mark">t.</span><span>tokyo<span class="brand-small">IN MINIATURE</span></span></a>
+  <nav aria-label="여행 날짜">
+    <button class="day active" data-day="1">Day 1 <small>도쿄타워</small></button>
+    <button class="day" data-day="2">Day 2</button>
+    <button class="day" data-day="3">Day 3</button>
+    <button class="day" data-day="4">Day 4</button>
+  </nav>
+  <span class="trip-label">나의 도쿄 · 3박 4일</span>
+</header>
+<main>
+  <aside id="itinerary">
+    <div class="intro">
+      <span class="eyebrow">DAY 01 / MINATO, TOKYO</span>
+      <h1>도쿄타워를<br>따라 걷는 하루<span>⟡</span></h1>
+      <p>공원에서 커피 한 잔, 그리고 도쿄의 하늘.</p>
+    </div>
+    <div class="planner">
+      <label>출발 시간 <input id="start" type="time" value="10:00"></label>
+      <label>여행 속도
+        <select id="pace">
+          <option value="1">여유롭게</option>
+          <option value="0.75">가볍게</option>
+          <option value="1.25">천천히</option>
+        </select>
+      </label>
+      <button id="plan">일정 다시 계획하기 ↗</button>
+    </div>
+    <div class="summary">
+      <div><b id="distance">-</b><span>장소 간 이동 · 추정</span></div>
+      <div><b id="duration">-</b><span>관광·휴식 포함</span></div>
+    </div>
+    <div id="cards"></div>
+    <div class="aside-note">영업시간은 여행일에 다시 확인해 주세요.<br>이동시간은 대기·교통 상황에 따라 달라집니다.</div>
+  </aside>
+  <section id="map" aria-label="도쿄 3D 여행 지도">
+    <div id="canvas"></div>
+    <div id="pins"></div>
+    <div class="map-heading"><span class="eyebrow">YOUR LITTLE TOKYO</span><h2>Tokyo Tower &amp; around</h2><span class="map-live">3D 도시 탐험</span></div>
+    <div id="map-status">도쿄의 작은 거리를 준비하고 있어요…</div>
+    <div class="map-tools">
+      <button id="north" title="북쪽으로 정렬" aria-label="북쪽으로 정렬">N ↑</button>
+      <button id="zoom-in" aria-label="지도 확대">＋</button>
+      <button id="zoom-out" aria-label="지도 축소">−</button>
+      <button id="reset" aria-label="전체 동선 보기">⌖</button>
+      <button id="motion" aria-label="도시 움직임 일시정지">Ⅱ</button>
+    </div>
+    <div class="map-hint">드래그 이동 · 휠/핀치 확대 · 우클릭 회전</div>
+    <div class="legend"><span><i class="walk"></i>도보</span><span><i class="taxi"></i>택시</span><span><i class="subway"></i>지하철</span></div>
+    <div id="details" hidden></div>
+    <div class="player">
+      <button id="play" aria-label="여행 동선 재생">▶</button>
+      <div><b id="play-label">오늘의 동선을 미리 걸어보세요</b><span id="play-sub">5곳의 작은 발견 · Day 1</span></div>
+      <input id="progress" type="range" min="0" max="1000" value="0" aria-label="여행 진행 위치">
+      <button id="next" aria-label="다음 장소">↦</button>
+    </div>
+    <div class="attribution">도로·건물은 개략 재해석 · 실제 장소 좌표 · 경로·시간 추정 · 지도 데이터 원본: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors</a></div>
+    <div id="empty-day" hidden>
+      <span class="eyebrow">YOUR NEXT CHAPTER</span>
+      <h2 id="empty-title"></h2>
+      <p>이번 프로토타입은 Day 1 도쿄타워 지역을 담고 있어요.<br>나머지 날짜는 아직 계획되지 않았습니다.</p>
+      <button id="back-day">Day 1 둘러보기 →</button>
+    </div>
+  </section>
+</main>
+<div id="toast" role="status"></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>
