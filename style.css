@@ -71,8 +71,8 @@ aside{width:350px;flex-shrink:0;background:var(--panel);overflow-y:auto;z-index:
 .map-tools{position:absolute;right:24px;top:24px;display:grid;gap:5px}
 .map-tools button{width:39px;height:39px;border-radius:9px;background:#ffffffeb;color:#47624f;box-shadow:0 2px 10px #324c3518;font-size:21px}
 .map-tools #north{font-size:12px;margin-bottom:8px}
-.map-hint{position:absolute;bottom:112px;left:27px;color:#788874;font-size:10px}
-.legend{position:absolute;left:27px;bottom:89px;display:flex;gap:14px;font-size:10px;color:#53664f}
+.map-hint{position:absolute;bottom:132px;left:27px;color:#788874;font-size:10px}
+.legend{position:absolute;left:27px;bottom:110px;display:flex;gap:14px;font-size:10px;color:#53664f}
 .legend span{display:flex;align-items:center;gap:5px}
 .legend i{width:16px;border-top:3px dashed #e77a49}
 .legend .taxi{border-color:#637ca0;border-top-style:solid}
