@@ -296,20 +296,126 @@ const roadLines = [
   [[139.7395, 35.663], [139.7395, 35.657]],
 ];
 
-function buildCity() {
+/* ---- OpenStreetMap 데이터(osm.json): 도로 선 + 건물 바닥 면 ---- */
+// 도로 그래프(경로 찾기용)
+const graph = new Map();
+let linked = { walk: null, taxi: null };
+const gkey = (x, z) => `${x},${z}`;
+
+function addEdge(a, b, drive) {
+  const d = Math.hypot(a[0] - b[0], a[1] - b[1]);
+  const ka = gkey(...a), kb = gkey(...b);
+  if (!graph.has(ka)) graph.set(ka, { x: a[0], z: a[1], edges: [] });
+  if (!graph.has(kb)) graph.set(kb, { x: b[0], z: b[1], edges: [] });
+  graph.get(ka).edges.push([kb, d, drive]); graph.get(kb).edges.push([ka, d, drive]);
+}
+
+function largestComponent(mode) {
+  const seen = new Set(); let best = new Set();
+  for (const [id] of graph) {
+    if (seen.has(id)) continue;
+    const comp = new Set(), stack = [id]; seen.add(id);
+    while (stack.length) {
+      const k = stack.pop(); comp.add(k);
+      for (const [n, , drive] of graph.get(k).edges) {
+        if (mode === 'taxi' && !drive) continue;
+        if (!seen.has(n)) { seen.add(n); stack.push(n); }
+      }
+    }
+    if (comp.size > best.size) best = comp;
+  }
+  return best;
+}
+
+function nearestNode(p, mode) {
+  let bestK = null, bestD = Infinity;
+  for (const [k, n] of graph) {
+    if (!linked[mode].has(k)) continue;
+    if (mode === 'taxi' && !n.edges.some((e) => e[2])) continue;
+    const d = Math.hypot(n.x - p.x, n.z - p.z);
+    if (d < bestD) { bestD = d; bestK = k; }
+  }
+  return bestK;
+}
+
+// 다익스트라(간단한 이진 힙)
+function shortest(a, b, mode) {
+  if (!graph.size) return null;
+  const s = nearestNode(a, mode), t = nearestNode(b, mode);
+  if (!s || !t) return null;
+  const dist = new Map([[s, 0]]), prev = new Map(), heap = [[0, s]];
+  const push = (it) => { heap.push(it); let i = heap.length - 1; while (i > 0) { const p = (i - 1) >> 1; if (heap[p][0] <= heap[i][0]) break; [heap[p], heap[i]] = [heap[i], heap[p]]; i = p; } };
+  const pop = () => { const top = heap[0], last = heap.pop(); if (heap.length) { heap[0] = last; let i = 0; for (;;) { let l = 2 * i + 1, r = l + 1, m = i; if (l < heap.length && heap[l][0] < heap[m][0]) m = l; if (r < heap.length && heap[r][0] < heap[m][0]) m = r; if (m === i) break; [heap[m], heap[i]] = [heap[i], heap[m]]; i = m; } } return top; };
+  while (heap.length) {
+    const [d, k] = pop();
+    if (d > (dist.get(k) ?? Infinity)) continue;
+    if (k === t) break;
+    for (const [n, w, drive] of graph.get(k).edges) {
+      if (mode === 'taxi' && !drive) continue;
+      const nd = d + w;
+      if (nd < (dist.get(n) ?? Infinity)) { dist.set(n, nd); prev.set(n, k); push([nd, n]); }
+    }
+  }
+  if (!dist.has(t)) return null;
+  const pts = [];
+  for (let k = t; k; k = prev.get(k)) { const n = graph.get(k); pts.push(new THREE.Vector3(n.x, 2, n.z)); }
+  pts.reverse();
+  return [a.clone().setY(2), ...pts, b.clone().setY(2)];
+}
+
+function osmCity(osm) {
+  const lines = [];
+  const palette = ['#e4cfaa', '#cc967c', '#86a397', '#789aaa', '#b69fa5', '#c1b16f', '#a8b6ba', '#dcc5ae'];
+  for (const [cls, flat] of osm.r) {
+    const pts = [];
+    for (let i = 0; i < flat.length; i += 2) pts.push(new THREE.Vector3(flat[i], 0, flat[i + 1]));
+    const drive = cls > 0;
+    for (let i = 1; i < pts.length; i++) {
+      road(staticGroup, pts[i - 1], pts[i], cls === 0 ? 3 : cls === 2 ? 14 : 7, cls === 0 ? '#c9bfa9' : '#66747b');
+      addEdge([flat[2 * i - 2], flat[2 * i - 1]], [flat[2 * i], flat[2 * i + 1]], drive);
+    }
+    pts.drive = drive;
+    lines.push(pts);
+  }
+  linked.walk = largestComponent('walk'); linked.taxi = largestComponent('taxi');
+
+  for (const [h0, flat] of osm.b) {
+    const xs = [], zs = [];
+    for (let i = 0; i < flat.length; i += 2) { xs.push(flat[i]); zs.push(flat[i + 1]); }
+    const minx = Math.min(...xs), maxx = Math.max(...xs), minz = Math.min(...zs), maxz = Math.max(...zs);
+    const cx = (minx + maxx) / 2, cz = (minz + maxz) / 2;
+    if (places.some((p) => Math.hypot(cx - p.pos.x, cz - p.pos.z) < 65) || maxx - minx > 170 || maxz - minz > 170) continue;
+    const shape = new THREE.Shape(xs.map((x, i) => new THREE.Vector2(x, -zs[i])));
+    const h = Math.min(170, Math.max(8, h0 || 12 + rand() * 22));
+    const geo = new THREE.ExtrudeGeometry(shape, { depth: h, bevelEnabled: false });
+    geo.rotateX(-Math.PI / 2);
+    const mesh = new THREE.Mesh(geo, mat(palette[Math.floor(rand() * palette.length)]));
+    staticGroup.add(mesh);
+    if (maxx - minx > 10 && maxz - minz > 10 && rand() > 0.55) {
+      box(staticGroup, cx, h + 0.5, cz, Math.min(8, (maxx - minx) / 2), 1, Math.min(6, (maxz - minz) / 2), '#7c8c91');
+    }
+  }
+  return lines;
+}
+
+function buildCity(osm) {
   staticGroup = new THREE.Group(); scene.add(staticGroup);
   box(staticGroup, 0, -6, 0, 1320, 10, 1450, '#c6d0b6');
   box(staticGroup, 0, -0.5, 0, 1320, 1, 1450, '#bac5a7');
   for (let x = -640; x < 650; x += 35) for (let z = -700; z < 700; z += 35) stud(staticGroup, x, 0.1, z, 2.2, '#adbb99');
 
-  const lines = roadLines.map((r) => r.map(([lon, lat]) => project(lat, lon)));
-  lines.forEach((pts) => { for (let i = 1; i < pts.length; i++) road(staticGroup, pts[i - 1], pts[i], 12, '#66747b'); });
-
-  const palette = ['#e0d6bd', '#d1d2c2', '#bfc9bc', '#ece5d3'];
-  for (let i = 0; i < 130; i++) {
-    const x = (rand() - 0.5) * 1050, z = (rand() - 0.5) * 1100;
-    if (places.some((p) => Math.hypot(x - p.pos.x, z - p.pos.z) < 95)) continue;
-    building(staticGroup, x, z, 15 + rand() * 20, 14 + rand() * 18, 14 + rand() * 48, palette[i % 4], i < 60);
+  let lines;
+  if (osm) {
+    lines = osmCity(osm);
+  } else {
+    lines = roadLines.map((r) => r.map(([lon, lat]) => project(lat, lon)));
+    lines.forEach((pts) => { for (let i = 1; i < pts.length; i++) road(staticGroup, pts[i - 1], pts[i], 12, '#66747b'); });
+    const palette = ['#e0d6bd', '#d1d2c2', '#bfc9bc', '#ece5d3'];
+    for (let i = 0; i < 130; i++) {
+      const x = (rand() - 0.5) * 1050, z = (rand() - 0.5) * 1100;
+      if (places.some((p) => Math.hypot(x - p.pos.x, z - p.pos.z) < 95)) continue;
+      building(staticGroup, x, z, 15 + rand() * 20, 14 + rand() * 18, 14 + rand() * 48, palette[i % 4], i < 60);
+    }
   }
   tokyoTower(staticGroup);
   temple(staticGroup);
@@ -387,8 +493,10 @@ function drawRoutes() {
   routes = places.slice(0, LAST).map((p, i) => {
     const a = p.pos.clone().setY(2), b = places[i + 1].pos.clone().setY(2);
     const taxi = state.modes[i] === 'taxi';
-    const mid = taxi ? new THREE.Vector3(a.x, 2, b.z) : new THREE.Vector3(b.x, 2, a.z);
-    const curve = pathOf([a, mid, b]);
+    // 도로 데이터가 있으면 도로를 따라가는 최단 경로, 없으면 직각으로 꺾은 선
+    let pts = shortest(a, b, taxi ? 'taxi' : 'walk');
+    if (!pts || pts.length < 2) pts = [a, taxi ? new THREE.Vector3(a.x, 2, b.z) : new THREE.Vector3(b.x, 2, a.z), b];
+    const curve = pathOf(pts);
     const length = curve.getLength();
     state.distances[i] = Math.max(50, Math.round((length * 1.08) / 10) * 10); // 도로 굴곡 보정(추정)
     const color = taxi ? '#6486b2' : '#e77543';
@@ -429,17 +537,27 @@ async function init() {
   sun.shadow.bias = -0.001;
   scene.add(sun);
 
-  const lines = buildCity();
+  let osm = null;
+  try {
+    const res = await fetch('./osm.json');
+    if (res.ok) osm = await res.json();
+  } catch { /* 데이터가 없으면 절차적 도시로 대체 */ }
+  let lines;
+  try { lines = buildCity(osm); } catch (e) { console.warn('OSM 도시 생성 실패, 대체 도시 사용', e); scene.remove(staticGroup); graph.clear(); osm = null; lines = buildCity(null); }
+  if (!osm) $('.attribution').innerHTML = '도로·건물은 개략 재해석 · 실제 장소 좌표 · 경로·시간 추정';
 
-  // 걷는 사람과 차량
-  lines.forEach((pts, i) => {
-    const curve = pathOf(pts);
-    for (let k = 0; k < 3; k++) {
-      const g = person(['#c4ad84', '#54665d', '#bd8158', '#ded3b8'][(i + k) % 4]); g.scale.setScalar(0.85); scene.add(g);
-      people.push({ g, curve, side: 6, offset: rand() });
-    }
-    const car = vehicle((i + 1) % 3 === 0); scene.add(car);
-    cars.push({ g: car, curve, offset: rand() });
+  // 걷는 사람과 차량: 길이가 충분한 도로에서 몇 개만 고름
+  const long = lines.filter((pts) => pts.length >= 2 && pts[0].distanceTo(pts[pts.length - 1]) > 70);
+  const walkLines = long.filter((p) => p.drive === false || p.drive === undefined);
+  const driveLines = long.filter((p) => p.drive !== false);
+  const pick = (arr, n) => Array.from({ length: Math.min(n, arr.length) }, (_, i) => arr[Math.floor(((i + 0.5) * arr.length) / n)]);
+  pick(walkLines.length ? walkLines : long, 22).forEach((pts, i) => {
+    const g = person(['#c4ad84', '#54665d', '#bd8158', '#ded3b8'][i % 4]); g.scale.setScalar(0.85); scene.add(g);
+    people.push({ g, curve: pathOf(pts), side: pts.drive === false ? 0 : 5, offset: rand() });
+  });
+  pick(driveLines.length ? driveLines : long, 10).forEach((pts, i) => {
+    const car = vehicle(i % 3 === 0); scene.add(car);
+    cars.push({ g: car, curve: pathOf(pts), offset: rand() });
   });
 
   traveler = person('#e7dabb', true); traveler.scale.setScalar(1.7); scene.add(traveler);
