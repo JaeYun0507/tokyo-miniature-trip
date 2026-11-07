@@ -174,3 +174,10 @@ fieldset label{flex-direction:row;align-items:center;gap:10px;font-size:14px;col
 .food-links{display:flex;flex-wrap:wrap;gap:6px 12px}
 .food-links a{font-size:12px;color:#c8371f;text-decoration:none}
 .food-links a:hover{text-decoration:underline}
+#food-tabs{display:flex;gap:6px;margin:4px 0 8px}
+#food-tabs button{padding:8px 14px;border-radius:999px;background:#efe9dc;color:#1f1b16;font-size:12.5px;font-weight:600}
+#food-tabs button[aria-selected="true"]{background:#1f1b16;color:#fffaf1}
+.tag{padding:2px 8px;border-radius:99px;font-size:10.5px;font-weight:600;color:#fff}
+.tag.mich{background:#b3202a}
+.tag.tabe{background:#7a5c1e}
+.tag.gmap{background:#2f6b3f}
