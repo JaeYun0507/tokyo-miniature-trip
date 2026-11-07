@@ -684,7 +684,7 @@ function overview() { camGoal = { target: new THREE.Vector3(0, 35, 0), zoom: 0.9
 
 const ATTR_OSM = $('.attribution').innerHTML;
 const ATTR_GRID = '장소 좌표 <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors</a> · 도로·건물은 임의 배치 · 경로·시간은 추정';
-let osmData = null, fitZoom = 1;
+const osmData = {}; let fitZoom = 1;
 
 // 날짜를 바꾸면 도시, 동선, 핀, 안내 문구를 그 날짜 것으로 다시 만들어요
 function loadDay(n) {
@@ -695,7 +695,7 @@ function loadDay(n) {
   graph.clear(); linked.walk = null; linked.taxi = null;
   seed = n === 1 ? 829 : 829 + n * 7919;
 
-  let osm = d.osm ? osmData : null, lines;
+  let osm = d.osm ? osmData[d.osm] || null : null, lines;
   try { lines = buildCity(osm); } catch (e) { console.warn('OSM 도시 생성 실패, 대체 도시 사용', e); scene.remove(staticGroup); graph.clear(); osm = null; lines = buildCity(null); }
   $('.attribution').innerHTML = osm ? ATTR_OSM : ATTR_GRID;
 
@@ -753,7 +753,7 @@ async function init() {
   Object.assign(sunLight.shadow.camera, { left: -800, right: 800, top: 800, bottom: -800, far: 2400 }); sunLight.shadow.bias = -0.001;
   scene.add(sunLight);
 
-  try { const res = await fetch('./osm.json'); if (res.ok) osmData = await res.json(); } catch { /* 대체 도시 */ }
+  await Promise.all([...new Set(DAYS.map((d) => d.osm).filter(Boolean))].map(async (f) => { try { const res = await fetch('./' + f); if (res.ok) osmData[f] = await res.json(); } catch { /* 대체 도시 */ } }));
 
   traveler = person('#f0e6cf', true); traveler.scale.setScalar(1.9); scene.add(traveler);
   const ring = new THREE.Mesh(new THREE.TorusGeometry(7, 0.8, 6, 32), new THREE.MeshBasicMaterial({ color: '#e2452b' }));
