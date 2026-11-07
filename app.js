@@ -1,46 +1,60 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
 import { mergeGeometries } from './vendor/BufferGeometryUtils.js';
+import { DAYS, SOFT_CLOSE } from './days.js';
 
 const $ = (s) => document.querySelector(s);
 
 /* ---------------------------------------------------------------
    데이터: 실제 장소 좌표. 운영시간·요금은 공식 사이트에서 다시 확인하세요.
 ---------------------------------------------------------------- */
-const places = [
-  { id: 'shiba', name: '시바공원', en: 'Shiba Park', lat: 35.654817, lon: 139.74804, stay: 45,
-    category: '공원 · 산책', hours: '시설별 운영 시간이 달라요',
-    desc: '도쿄타워를 올려다보며 초록빛 산책로를 걸어요. 사진을 찍고 천천히 하루를 시작하기 좋은 첫 장소.',
-    link: 'https://www.gotokyo.org/en/spot/423/index.html' },
-  { id: 'zojoji', name: '조조지', en: 'Zōjō-ji Temple', lat: 35.657348, lon: 139.748157, stay: 50,
-    category: '사찰 · 문화', hours: '개방 시간과 행사 일정은 공식 사이트에서 확인',
-    desc: '오래된 사찰의 지붕 너머로 도쿄타워가 솟아 있어요. 경내와 산게다쓰몬을 천천히 둘러보세요.',
-    link: 'https://www.zojoji.or.jp/map/' },
-  { id: 'lunch', name: '공원 옆 카페', en: 'Café by the park', lat: 35.65815, lon: 139.750085, stay: 75,
-    category: '점심 · 카페', hours: '영업시간은 매장별로 달라요',
-    desc: '공원 옆 베이커리 카페에서 빵과 커피로 쉬어가는 점심. 가게는 여행 전에 직접 골라 바꿔도 좋아요.',
-    link: 'https://www.google.com/maps/search/?api=1&query=35.65815,139.750085' },
-  { id: 'tower', name: '도쿄타워', en: 'Tokyo Tower', lat: 35.658581, lon: 139.745438, stay: 120,
-    category: '전망대 · 랜드마크', hours: '전망대 운영 시간과 요금은 공식 사이트에서 확인',
-    desc: '도쿄를 상징하는 주황빛 철탑. 해 질 무렵 전망대에서 도시에 불이 켜지는 순간을 기다려 보세요.',
-    link: 'https://en.tokyotower.co.jp/fee/' },
-  { id: 'azabudai', name: '아자부다이 힐즈', en: 'Azabudai Hills', lat: 35.661586, lon: 139.740892, stay: 120,
-    category: '쇼핑 · 마켓', hours: '상점별 영업시간은 공식 사이트에서 확인',
-    desc: '곡선형 건축과 녹색 광장, 상점과 마켓이 이어지는 마지막 코스. 가미야초역과 연결돼 있어요.',
-    link: 'https://www.azabudai-hills.com/information/index.html' },
-];
-const LAST = places.length - 1;
-const CENTER = { lat: 35.658581, lon: 139.745438 };
+// 장소 데이터는 days.js에 날짜별로 있어요. loadDay()가 날짜마다 아래 값을 바꿔 끼워요.
+let places = [], LAST = 0, CENTER = DAYS[0].center;
 const project = (lat, lon) => new THREE.Vector3((lon - CENTER.lon) * 90500, 0, -(lat - CENTER.lat) * 111200);
-places.forEach((p) => { p.pos = project(p.lat, p.lon); });
-const SOFT_CLOSE = { zojoji: 17 * 60 + 30, azabudai: 20 * 60, lunch: 21 * 60, tower: 23 * 60 };
 
 const state = {
   day: 1, selected: 0, pace: 1, start: 720,
   playing: false, progress: 0, goal: 0, dragging: false,
-  modes: Array(LAST).fill('walk'), minutes: Array(LAST).fill(10), distances: Array(LAST).fill(400),
+  modes: [], minutes: [], distances: [],
 };
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function setPlaces(i) {
+  const d = DAYS[i];
+  places = d.places; LAST = places.length - 1;
+  if (d.center) CENTER = d.center;
+  else {
+    const la = places.map((p) => p.lat), lo = places.map((p) => p.lon);
+    CENTER = { lat: (Math.min(...la) + Math.max(...la)) / 2, lon: (Math.min(...lo) + Math.max(...lo)) / 2 };
+  }
+  places.forEach((p) => { p.pos = project(p.lat, p.lon); });
+  state.day = d.day; state.selected = 0; state.progress = 0; state.goal = 0; state.playing = false;
+  state.modes = Array(LAST).fill('walk'); state.minutes = Array(LAST).fill(10); state.distances = Array(LAST).fill(400);
+}
+setPlaces(0);
+
+// 구글 지도 링크: 장소 보기, 구간 길찾기, 하루 전체 동선
+const gmapPlace = (p) => `https://www.google.com/maps/search/?api=1&query=${p.lat},${p.lon}`;
+const gmapDir = (a, b, mode) => `https://www.google.com/maps/dir/?api=1&origin=${a.lat},${a.lon}&destination=${b.lat},${b.lon}&travelmode=${mode}`;
+function gmapDay() {
+  const mid = places.slice(1, -1).map((p) => `${p.lat},${p.lon}`).join('%7C');
+  return `https://www.google.com/maps/dir/?api=1&origin=${places[0].lat},${places[0].lon}&destination=${places[LAST].lat},${places[LAST].lon}${mid ? `&waypoints=${mid}` : ''}&travelmode=walking`;
+}
+
+// 수집 카드: 장소에 도착(선택)하면 그 장소의 카드를 얻어요. 이 브라우저에만 저장돼요.
+const CARD_KEY = 'tmt-cards-v1';
+const cards = new Set();
+try { JSON.parse(localStorage.getItem(CARD_KEY) || '[]').forEach((k) => cards.add(k)); } catch { /* 저장소를 못 쓰면 이번 방문에만 기억해요 */ }
+const cardKey = (p) => `${state.day}:${p.id}`;
+const hasCard = (p) => cards.has(cardKey(p));
+const TOTAL_CARDS = DAYS.reduce((n, d) => n + d.places.length, 0);
+function saveCards() { try { localStorage.setItem(CARD_KEY, JSON.stringify([...cards])); } catch { /* 무시 */ } }
+function collect(p) {
+  if (hasCard(p)) return;
+  cards.add(cardKey(p)); saveCards();
+  const got = places.filter(hasCard).length;
+  toast(got === places.length ? `Day ${state.day} 카드를 모두 모았어요 · ${got}/${places.length}` : `카드를 얻었어요 · ${p.name} (${got}/${places.length})`);
+}
 
 const hhmm = (n) => { n = Math.round(n); return `${String(Math.floor(n / 60) % 24).padStart(2, '0')}:${String(n % 60).padStart(2, '0')}`; };
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -79,15 +93,18 @@ function renderCard() {
   const i = state.selected, p = places[i], last = i === LAST;
   const next = last ? null : places[i + 1];
   $('#card').innerHTML = `
-    <div class="eyebrow">Chapter ${String(i + 1).padStart(2, '0')} / ${String(places.length).padStart(2, '0')}</div>
+    <div class="eyebrow">Day ${state.day} · Chapter ${String(i + 1).padStart(2, '0')} / ${String(places.length).padStart(2, '0')}${hasCard(p) ? '<span class="got">카드 획득 ✓</span>' : ''}</div>
     <div class="clock">${hhmm(p.from)}<span>– ${hhmm(p.to)}</span></div>
     <h2>${esc(p.name)}</h2>
     <p class="sub">${esc(p.en)} · ${esc(p.category)}</p>
     <p class="desc">${esc(p.desc)}</p>
     <div class="chips">
       <span>${p.spent}분 머무르기</span><span>${esc(p.hours)}</span>
-      <a href="${p.link}" target="_blank" rel="noopener">영업정보 ↗</a>
-      <a href="https://www.google.com/maps/search/?api=1&query=${p.lat},${p.lon}" target="_blank" rel="noopener">지도 ↗</a>
+      <a href="${p.link}" target="_blank" rel="noopener">공식 정보 ↗</a>
+      <a href="${gmapPlace(p)}" target="_blank" rel="noopener">구글 지도 ↗</a>
+      ${last ? '' : `<a href="${gmapDir(p, next, 'walking')}" target="_blank" rel="noopener">도보 길찾기 ↗</a>
+      <a href="${gmapDir(p, next, 'transit')}" target="_blank" rel="noopener">대중교통 ↗</a>`}
+      <a href="${gmapDay()}" target="_blank" rel="noopener">오늘 동선 ↗</a>
     </div>
     ${last ? '<div class="leg"><span>여정의 끝이에요. 처음부터 다시 걸어볼까요?</span></div>' : `
     <div class="leg">
@@ -121,6 +138,20 @@ function markStations() {
     el.classList.toggle('on', i === state.selected);
     el.classList.toggle('past', i < state.selected);
   });
+  pinEls.forEach((el, i) => el.classList.toggle('new', !hasCard(places[i])));
+  const mine = places.filter(hasCard).length, all = [...cards].filter((k) => DAYS.some((d) => d.places.some((p) => `${d.day}:${p.id}` === k))).length;
+  $('#deck-n').textContent = all;
+  $('#deck-bar').style.width = `${(all / TOTAL_CARDS) * 100}%`;
+  $('#deck-btn').setAttribute('aria-label', `수집 카드 ${all}/${TOTAL_CARDS}, 오늘 ${mine}/${places.length}`);
+}
+function renderDeck() {
+  $('#deck-list').innerHTML = DAYS.map((d) => {
+    const have = d.places.filter((p) => cards.has(`${d.day}:${p.id}`)).length;
+    return `<section><h4>Day ${d.day} · ${esc(d.label)} <em>${have}/${d.places.length}</em></h4><ul>${d.places.map((p) => {
+      const on = cards.has(`${d.day}:${p.id}`);
+      return `<li class="${on ? 'on' : ''}"><b>${on ? esc(p.name) : '?'}</b><span>${on ? esc(p.category) : '아직 만나지 못한 곳'}</span></li>`;
+    }).join('')}</ul></section>`;
+  }).join('');
 }
 
 function refresh() {
@@ -131,23 +162,23 @@ function refresh() {
 }
 
 // i번째 장소로 이동(타임라인과 카메라가 함께 따라감)
-function go(i) {
+function go(i, getCard = true) {
   state.selected = Math.max(0, Math.min(LAST, i));
   state.goal = state.selected / LAST; state.playing = false;
   focusOn(places[state.selected].pos);
+  if (getCard) collect(places[state.selected]);
   renderCard(); markStations();
   pinEls.forEach((el, k) => el.classList.toggle('selected', k === state.selected));
   $('#play').textContent = '▶';
 }
 
-function setDay(n) {
-  state.day = n; state.playing = false;
-  $('#empty-day').hidden = n === 1;
-  $('#empty-title').textContent = `${n}일째`;
-  document.querySelectorAll('.day').forEach((b) => { const on = +b.dataset.day === n; b.classList.toggle('active', on); b.toggleAttribute('aria-current', on); });
-}
+let ready = false;
+function setDay(n) { if (ready && n !== state.day) loadDay(n); }
 document.querySelectorAll('.day').forEach((b) => { b.onclick = () => setDay(+b.dataset.day); });
 $('#back-day').onclick = () => setDay(1);
+$('#deck-btn').onclick = () => { renderDeck(); $('#deck').hidden = false; };
+$('#deck-close').onclick = () => { $('#deck').hidden = true; };
+$('#deck').onclick = (e) => { if (e.target.id === 'deck') $('#deck').hidden = true; };
 
 $('#open-plan').onclick = () => { $('#sheet').hidden = false; };
 $('#sheet-cancel').onclick = () => { $('#sheet').hidden = true; };
@@ -157,7 +188,7 @@ $('#sheet-apply').onclick = () => {
   if (!Number.isFinite(h + m)) { toast('출발 시간을 입력해 주세요.'); return; }
   state.start = h * 60 + m; state.pace = +document.querySelector('input[name=pace]:checked').value;
   $('#sheet').hidden = true;
-  refresh(); go(0);
+  refresh(); go(0, false);
   const late = places.filter((p) => SOFT_CLOSE[p.id] && p.to > SOFT_CLOSE[p.id]);
   toast(late.length ? `일정을 갱신했어요. ${late.map((p) => p.name).join(', ')}의 운영시간을 확인해 주세요.` : '일정을 다시 계획했어요.');
 };
@@ -177,7 +208,7 @@ $('#progress').addEventListener('change', () => {
   go(Math.round(state.progress * LAST));
 });
 addEventListener('keydown', (e) => {
-  if (e.target.closest('input,textarea') || !$('#sheet').hidden) return;
+  if (e.target.closest('input,textarea') || !$('#sheet').hidden || !$('#deck').hidden) return;
   if (e.key === 'ArrowRight') go(state.selected + 1);
   if (e.key === 'ArrowLeft') go(state.selected - 1);
   if (e.key === ' ' && e.target.tagName !== 'BUTTON') { e.preventDefault(); $('#play').click(); }
@@ -186,7 +217,7 @@ addEventListener('keydown', (e) => {
 function syncSelectedFromProgress() {
   const s = Math.round(state.progress * LAST);
   if (s !== state.selected) {
-    state.selected = s; renderCard(); markStations();
+    state.selected = s; collect(places[s]); renderCard(); markStations();
     pinEls.forEach((el, k) => el.classList.toggle('selected', k === s));
   }
 }
@@ -279,8 +310,8 @@ function building(parent, x, z, w, d, h, color) {
   box(parent, x, h + 0.8, z, w + 1, 1.6, d + 1, '#e7e2d6');
 }
 
-function tokyoTower(parent) {
-  const g = new THREE.Group(); g.position.copy(places[3].pos);
+function tokyoTower(parent, p) {
+  const g = new THREE.Group(); g.position.copy(p.pos);
   const orange = emat('#ec4a2a', glowTower), white = emat('#f3efe4', glowTower), deck = emat('#f0ebdc', glowTower);
   box(g, 0, 5, 0, 47, 10, 35, '#d9d2c3');
   const lv = [[0, 38], [28, 28], [55, 20], [82, 13], [107, 9], [134, 6], [158, 3.7], [187, 2.3]];
@@ -299,8 +330,8 @@ function tokyoTower(parent) {
   cyl(g, 0, 196, 0, 1.8, 25, white); cyl(g, 0, 214, 0, 0.9, 17, orange);
   parent.add(g);
 }
-function temple(parent) {
-  const g = new THREE.Group(); g.position.copy(places[1].pos);
+function temple(parent, p) {
+  const g = new THREE.Group(); g.position.copy(p.pos);
   box(g, 0, 0.5, 0, 87, 1, 72, '#d6d1c3');
   box(g, 0, 12, 0, 54, 21, 33, '#e6dbc2');
   for (let x = -25; x <= 25; x += 8) box(g, x, 12, 18, 2, 22, 2, '#7b5a48');
@@ -308,6 +339,110 @@ function temple(parent) {
   for (const x of [-29, 29]) for (const z of [-25, 25]) tree(g, x, z, 0.8);
   box(g, 65, 9, 0, 3, 18, 3, '#9a503a'); box(g, 79, 9, 0, 3, 18, 3, '#9a503a'); box(g, 72, 15, 0, 24, 6, 9, '#a5523c');
   parent.add(g);
+}
+function skytree(parent, p) {
+  const g = new THREE.Group(); g.position.copy(p.pos);
+  box(g, 0, 4, 0, 74, 8, 64, '#d9d2c3');
+  for (let k = 0; k < 3; k++) {
+    const a = (k * Math.PI * 2) / 3;
+    beam(g, new THREE.Vector3(Math.cos(a) * 30, 6, Math.sin(a) * 30), new THREE.Vector3(Math.cos(a) * 5, 130, Math.sin(a) * 5), 3, '#e3e7e9');
+  }
+  cyl(g, 0, 235, 0, 5.5, 210, '#e8ebec');
+  box(g, 0, 250, 0, 24, 9, 24, '#ccd4d8'); box(g, 0, 300, 0, 16, 6, 16, '#ccd4d8');
+  cyl(g, 0, 345, 0, 2.2, 90, '#dde1e3'); cyl(g, 0, 405, 0, 0.9, 40, '#d3d8da');
+  parent.add(g);
+}
+function gate(parent, p) {
+  const g = new THREE.Group(); g.position.copy(p.pos);
+  for (const x of [-16, 16]) { box(g, x, 10, 0, 6, 20, 6, '#c9503a'); box(g, x, 1, 0, 9, 2, 9, '#938d80'); }
+  box(g, 0, 22, 0, 52, 5, 12, '#bb4531');
+  for (let k = 0; k < 5; k++) box(g, 0, 26 + k * 1.3, 0, 62 - k * 6, 1.6, 20 - k * 2, '#4d5754');
+  cyl(g, 0, 11, 0, 5, 13, '#d9462f');
+  for (let k = 0; k < 8; k++) { // 나카미세 거리의 작은 가게들
+    box(g, -14, 5, 28 + k * 16, 9, 10, 12, k % 2 ? '#dcbb92' : '#d29571');
+    box(g, 14, 5, 28 + k * 16, 9, 10, 12, k % 2 ? '#d29571' : '#dcbb92');
+  }
+  parent.add(g);
+}
+function forest(parent, p) {
+  const { x, z } = p.pos;
+  box(parent, x, 0.6, z, 190, 1.2, 150, '#a6bd93');
+  for (let i = 0; i < 48; i++) tree(parent, x + (rand() - 0.5) * 180, z + (rand() - 0.5) * 140, 0.9 + rand() * 0.5);
+  const g = new THREE.Group(); g.position.set(x, 0, z + 62); // 도리이
+  box(g, -14, 12, 0, 4, 24, 4, '#74503f'); box(g, 14, 12, 0, 4, 24, 4, '#74503f');
+  box(g, 0, 25, 0, 40, 4, 5, '#4f3e37'); box(g, 0, 20, 0, 32, 2.4, 3, '#4f3e37');
+  parent.add(g);
+}
+function skyscraper(parent, p) {
+  const { x, z } = p.pos;
+  building(parent, x, z, 52, 40, 150, '#b7c8c6');
+  box(parent, x, 156, z, 40, 6, 28, '#d3dcd9'); // 옥상 전망대
+}
+function museum(parent, p) {
+  const { x, z } = p.pos;
+  box(parent, x, 0.6, z, 140, 1.2, 100, '#d6d1c3');
+  box(parent, x, 13, z, 92, 24, 34, '#cbbd9d');
+  for (let k = 0; k < 6; k++) box(parent, x, 26 + k * 1.4, z, 100 - k * 8, 1.6, 42 - k * 5, '#66816f');
+  for (let k = -3; k <= 3; k++) box(parent, x + k * 12, 10, z + 18, 2.4, 18, 2.4, '#ece6d3');
+}
+function mall(parent, p) {
+  const { x, z } = p.pos;
+  box(parent, x, 14, z, 78, 28, 54, '#ece6d6'); box(parent, x, 29, z, 82, 2, 58, '#bdb5a0');
+  for (let k = -3; k <= 3; k++) box(parent, x + k * 11, 12, z + 27.2, 7, 12, 0.3, '#94adab');
+}
+function crossing(parent, p) {
+  const { x, z } = p.pos;
+  box(parent, x, 0.5, z, 110, 0.6, 110, '#8d949a');
+  for (let k = -4; k <= 4; k++) { // 횡단보도
+    box(parent, x + k * 5.5, 1, z + 33, 2.4, 0.4, 24, '#f5f2e8'); box(parent, x + k * 5.5, 1, z - 33, 2.4, 0.4, 24, '#f5f2e8');
+    box(parent, x + 33, 1, z + k * 5.5, 24, 0.4, 2.4, '#f5f2e8'); box(parent, x - 33, 1, z + k * 5.5, 24, 0.4, 2.4, '#f5f2e8');
+  }
+  for (let k = 0; k < 16; k++) {
+    const a = rand() * Math.PI * 2, r = 20 + rand() * 24;
+    box(parent, x + Math.cos(a) * r, 2, z + Math.sin(a) * r, 2, 4, 2, ['#c4ad84', '#54665d', '#bd8158'][k % 3]);
+  }
+  for (const [dx, dz, h] of [[-80, -80, 70], [80, -80, 50], [-80, 80, 60], [80, 80, 90]]) building(parent, x + dx, z + dz, 46, 42, h, '#d6dcd0');
+}
+function street(parent, p) {
+  const { x, z } = p.pos;
+  box(parent, x, 0.5, z, 150, 0.7, 14, '#c0b8a4');
+  const pal = ['#e5aca6', '#a8c9bc', '#ecd484', '#a2b4d6', '#e8bf9a', '#bdaed0'];
+  for (let k = -4; k <= 4; k++) for (const s of [-1, 1]) building(parent, x + k * 16, z + s * 18, 14, 16, 12 + ((k * 7 + 40) % 5) * 5, pal[(k + 8 + (s > 0 ? 2 : 0)) % 6]);
+}
+function avenue(parent, p) {
+  const { x, z } = p.pos;
+  box(parent, x, 0.5, z, 160, 0.7, 26, '#98a39c');
+  for (let k = -5; k <= 5; k++) for (const s of [-1, 1]) tree(parent, x + k * 14, z + s * 16, 0.85);
+  for (let k = -3; k <= 3; k += 2) building(parent, x + k * 22, z + 40, 18, 20, 18 + (k + 3) * 4, '#e2dccd');
+}
+function landmark(parent, p) {
+  const { x, z } = p.pos;
+  switch (p.lm) {
+    case 'tower': tokyoTower(parent, p); break;
+    case 'temple': temple(parent, p); break;
+    case 'cafe':
+      box(parent, x, 6, z, 25, 12, 14, '#b88f62'); box(parent, x, 12.7, z, 28, 1.4, 17, '#c6a37d');
+      break;
+    case 'park':
+      box(parent, x, 0.6, z, 120, 1.2, 90, '#b4c79e');
+      for (let i = 0; i < 18; i++) tree(parent, x + (rand() - 0.5) * 110, z + (rand() - 0.5) * 80, 0.8);
+      break;
+    case 'hills':
+      box(parent, x, 0.6, z, 85, 1.2, 68, '#c3cfae');
+      building(parent, x - 50, z - 30, 55, 48, 160, '#b7c8c6');
+      for (let i = 0; i < 14; i++) tree(parent, x + (rand() - 0.5) * 90, z + (rand() - 0.5) * 60, 0.75);
+      break;
+    case 'skytree': skytree(parent, p); break;
+    case 'gate': gate(parent, p); break;
+    case 'forest': forest(parent, p); break;
+    case 'skyscraper': skyscraper(parent, p); break;
+    case 'museum': museum(parent, p); break;
+    case 'mall': mall(parent, p); break;
+    case 'crossing': crossing(parent, p); break;
+    case 'street': street(parent, p); break;
+    case 'avenue': avenue(parent, p); break;
+    default: break;
+  }
 }
 function road(parent, a, b, width, color) {
   const len = a.distanceTo(b); if (len < 0.01) return;
@@ -406,13 +541,32 @@ function osmCity(osm) {
   return lines;
 }
 
+// OSM 데이터가 없는 날짜용 대체 도시: 격자 도로와 상자 건물(실제 도로·건물 아님)
+function gridCity(hx, hz) {
+  const step = 120, lines = [], xs = [], zs = [];
+  for (let x = -Math.floor((hx - 60) / step) * step; x <= hx - 60; x += step) xs.push(x);
+  for (let z = -Math.floor((hz - 60) / step) * step; z <= hz - 60; z += step) zs.push(z);
+  for (const x of xs) { const a = new THREE.Vector3(x, 0, zs[0]), b = new THREE.Vector3(x, 0, zs[zs.length - 1]); road(staticGroup, a, b, 12, '#8d949a'); const l = [a, b]; l.drive = true; lines.push(l); }
+  for (const z of zs) { const a = new THREE.Vector3(xs[0], 0, z), b = new THREE.Vector3(xs[xs.length - 1], 0, z); road(staticGroup, a, b, 12, '#8d949a'); const l = [a, b]; l.drive = true; lines.push(l); }
+  for (let i = 0; i < xs.length - 1; i++) {
+    for (let j = 0; j < zs.length - 1; j++) {
+      const cx = (xs[i] + xs[i + 1]) / 2, cz = (zs[j] + zs[j + 1]) / 2;
+      if (rand() < 0.22 || places.some((p) => Math.hypot(cx - p.pos.x, cz - p.pos.z) < 110)) continue;
+      building(staticGroup, cx, cz, 46 + rand() * 30, 46 + rand() * 30, 14 + rand() * 48, ['#ebe6dc', '#e2dccf', '#d8d1c3'][(i + j) % 3]);
+    }
+  }
+  return lines;
+}
+
 function buildCity(osm) {
   staticGroup = new THREE.Group(); scene.add(staticGroup);
-  box(staticGroup, 0, -6, 0, 1320, 10, 1450, '#c9cbbc');
-  box(staticGroup, 0, -0.5, 0, 1320, 1, 1450, '#d2d3c4');
+  const hx = Math.max(660, Math.max(...places.map((p) => Math.abs(p.pos.x))) + 450);
+  const hz = Math.max(725, Math.max(...places.map((p) => Math.abs(p.pos.z))) + 450);
+  box(staticGroup, 0, -6, 0, hx * 2, 10, hz * 2, '#c9cbbc');
+  box(staticGroup, 0, -0.5, 0, hx * 2, 1, hz * 2, '#d2d3c4');
   let lines;
   if (osm) lines = osmCity(osm);
-  else {
+  else if (state.day === 1) {
     lines = roadLines.map((r) => r.map(([lon, lat]) => project(lat, lon)));
     lines.forEach((pts) => { for (let i = 1; i < pts.length; i++) road(staticGroup, pts[i - 1], pts[i], 12, '#8d949a'); });
     for (let i = 0; i < 130; i++) {
@@ -420,18 +574,10 @@ function buildCity(osm) {
       if (places.some((p) => Math.hypot(x - p.pos.x, z - p.pos.z) < 95)) continue;
       building(staticGroup, x, z, 15 + rand() * 20, 14 + rand() * 18, 14 + rand() * 48, ['#ebe6dc', '#e2dccf', '#d8d1c3'][i % 3]);
     }
-  }
-  tokyoTower(staticGroup); temple(staticGroup);
-  const lp = places[2].pos;
-  box(staticGroup, lp.x, 6, lp.z, 25, 12, 14, '#b88f62'); box(staticGroup, lp.x, 12.7, lp.z, 28, 1.4, 17, '#c6a37d');
-  const sp = places[0].pos;
-  box(staticGroup, sp.x, 0.6, sp.z, 120, 1.2, 90, '#b4c79e');
-  for (let i = 0; i < 18; i++) tree(staticGroup, sp.x + (rand() - 0.5) * 110, sp.z + (rand() - 0.5) * 80, 0.8);
-  const az = places[4].pos;
-  box(staticGroup, az.x, 0.6, az.z, 85, 1.2, 68, '#c3cfae');
-  building(staticGroup, az.x - 50, az.z - 30, 55, 48, 160, '#b7c8c6');
-  for (let i = 0; i < 14; i++) tree(staticGroup, az.x + (rand() - 0.5) * 90, az.z + (rand() - 0.5) * 60, 0.75);
+  } else lines = gridCity(hx, hz);
+  places.forEach((p) => landmark(staticGroup, p));
   mergeStatic();
+  staticGroup.userData.half = Math.max(hx, hz);
   return lines;
 }
 function mergeStatic() {
@@ -493,7 +639,53 @@ function focusOn(pos, zoom = 1.7) {
   if (!controls) return;
   camGoal = { target: pos.clone().add(new THREE.Vector3(0, 25, 0)), zoom: reduced ? zoom : zoom };
 }
-function overview() { camGoal = { target: new THREE.Vector3(0, 35, 0), zoom: 0.95 }; }
+function overview() { camGoal = { target: new THREE.Vector3(0, 35, 0), zoom: 0.95 * fitZoom }; }
+
+const ATTR_OSM = $('.attribution').innerHTML;
+const ATTR_GRID = '장소 좌표 <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors</a> · 도로·건물은 임의 배치 · 경로·시간은 추정';
+let osmData = null, fitZoom = 1;
+
+// 날짜를 바꾸면 도시, 동선, 핀, 안내 문구를 그 날짜 것으로 다시 만들어요
+function loadDay(n) {
+  const d = DAYS[n - 1];
+  setPlaces(n - 1);
+  if (staticGroup) { staticGroup.traverse((o) => { if (o.geometry) o.geometry.dispose(); }); scene.remove(staticGroup); }
+  people.forEach((o) => scene.remove(o.g)); cars.forEach((o) => scene.remove(o.g)); people = []; cars = [];
+  graph.clear(); linked.walk = null; linked.taxi = null;
+  seed = n === 1 ? 829 : 829 + n * 7919;
+
+  let osm = d.osm ? osmData : null, lines;
+  try { lines = buildCity(osm); } catch (e) { console.warn('OSM 도시 생성 실패, 대체 도시 사용', e); scene.remove(staticGroup); graph.clear(); osm = null; lines = buildCity(null); }
+  $('.attribution').innerHTML = osm ? ATTR_OSM : ATTR_GRID;
+
+  const long = lines.filter((pts) => pts.length >= 2 && pts[0].distanceTo(pts[pts.length - 1]) > 70);
+  const walkLines = long.filter((p) => p.drive !== true), driveLines = long.filter((p) => p.drive !== false);
+  const pick = (arr, k) => Array.from({ length: Math.min(k, arr.length) }, (_, i) => arr[Math.floor(((i + 0.5) * arr.length) / k)]);
+  pick(walkLines.length ? walkLines : long, 20).forEach((pts, i) => {
+    const g = person(['#c4ad84', '#54665d', '#bd8158', '#ded3b8'][i % 4]); g.scale.setScalar(0.85); scene.add(g);
+    people.push({ g, curve: pathOf(pts), side: pts.drive === false ? 0 : 5, offset: rand() });
+  });
+  pick(driveLines.length ? driveLines : long, 10).forEach((pts, i) => { const car = vehicle(i % 3 === 0); scene.add(car); cars.push({ g: car, curve: pathOf(pts), offset: rand() }); });
+
+  $('#pins').innerHTML = ''; pinEls = [];
+  places.forEach((p, i) => {
+    const el = document.createElement('button');
+    el.className = 'pin'; el.innerHTML = `<i>${i + 1}</i><span>${esc(p.name)}</span>`; el.setAttribute('aria-label', `${i + 1}번 ${p.name}`);
+    el.onclick = () => go(i); $('#pins').appendChild(el); pinEls.push(el);
+  });
+  drawRoutes();
+
+  const half = staticGroup.userData.half;
+  Object.assign(sunLight.shadow.camera, { left: -half, right: half, top: half, bottom: -half, far: half * 3 });
+  sunLight.shadow.camera.updateProjectionMatrix();
+  const xs = places.map((p) => p.pos.x), zs = places.map((p) => p.pos.z);
+  const span = Math.max(Math.max(...xs) - Math.min(...xs), Math.max(...zs) - Math.min(...zs));
+  fitZoom = n === 1 ? 1 : THREE.MathUtils.clamp(1000 / (span + 200), 0.3, 1.1);
+
+  document.querySelectorAll('.day').forEach((b) => { const on = +b.dataset.day === n; b.classList.toggle('active', on); b.toggleAttribute('aria-current', on); });
+  camGoal = null; controls.target.set(0, 35, 0); camera.zoom = 1.3 * fitZoom; camera.updateProjectionMatrix();
+  refresh(); go(0, false);
+}
 
 async function init() {
   scene = new THREE.Scene();
@@ -508,7 +700,7 @@ async function init() {
   camera.position.set(780, 930, 970);
   controls = new OrbitControls(camera, renderer.domElement);
   controls.target.set(0, 35, 0); controls.enableDamping = true; controls.dampingFactor = 0.08;
-  controls.minZoom = 0.55; controls.maxZoom = 5; controls.maxPolarAngle = Math.PI * 0.46; controls.minPolarAngle = 0.22;
+  controls.minZoom = 0.3; controls.maxZoom = 5; controls.maxPolarAngle = Math.PI * 0.46; controls.minPolarAngle = 0.22;
   controls.mouseButtons = { LEFT: THREE.MOUSE.PAN, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.ROTATE };
   controls.touches = { ONE: THREE.TOUCH.PAN, TWO: THREE.TOUCH.DOLLY_ROTATE };
   controls.update();
@@ -520,34 +712,17 @@ async function init() {
   Object.assign(sunLight.shadow.camera, { left: -800, right: 800, top: 800, bottom: -800, far: 2400 }); sunLight.shadow.bias = -0.001;
   scene.add(sunLight);
 
-  let osm = null;
-  try { const res = await fetch('./osm.json'); if (res.ok) osm = await res.json(); } catch { /* 대체 도시 */ }
-  let lines;
-  try { lines = buildCity(osm); } catch (e) { console.warn('OSM 도시 생성 실패, 대체 도시 사용', e); scene.remove(staticGroup); graph.clear(); osm = null; lines = buildCity(null); }
-
-  const long = lines.filter((pts) => pts.length >= 2 && pts[0].distanceTo(pts[pts.length - 1]) > 70);
-  const walkLines = long.filter((p) => p.drive !== true), driveLines = long.filter((p) => p.drive !== false);
-  const pick = (arr, n) => Array.from({ length: Math.min(n, arr.length) }, (_, i) => arr[Math.floor(((i + 0.5) * arr.length) / n)]);
-  pick(walkLines.length ? walkLines : long, 20).forEach((pts, i) => {
-    const g = person(['#c4ad84', '#54665d', '#bd8158', '#ded3b8'][i % 4]); g.scale.setScalar(0.85); scene.add(g);
-    people.push({ g, curve: pathOf(pts), side: pts.drive === false ? 0 : 5, offset: rand() });
-  });
-  pick(driveLines.length ? driveLines : long, 10).forEach((pts, i) => { const car = vehicle(i % 3 === 0); scene.add(car); cars.push({ g: car, curve: pathOf(pts), offset: rand() }); });
+  try { const res = await fetch('./osm.json'); if (res.ok) osmData = await res.json(); } catch { /* 대체 도시 */ }
 
   traveler = person('#f0e6cf', true); traveler.scale.setScalar(1.9); scene.add(traveler);
   const ring = new THREE.Mesh(new THREE.TorusGeometry(7, 0.8, 6, 32), new THREE.MeshBasicMaterial({ color: '#e2452b' }));
   ring.rotation.x = Math.PI / 2; ring.position.y = 0.7; traveler.add(ring);
 
-  places.forEach((p, i) => {
-    const el = document.createElement('button');
-    el.className = 'pin'; el.innerHTML = `<i>${i + 1}</i><span>${esc(p.name)}</span>`; el.setAttribute('aria-label', `${i + 1}번 ${p.name}`);
-    el.onclick = () => go(i); $('#pins').appendChild(el); pinEls.push(el);
-  });
-  drawRoutes(); refresh(); go(0);
-  camera.zoom = 1.3; camera.updateProjectionMatrix();
+  loadDay(1);
+  ready = true;
   $('#map-status').hidden = true;
 
-  const zoom = (f) => { camGoal = null; camera.zoom = THREE.MathUtils.clamp(camera.zoom * f, 0.55, 5); camera.updateProjectionMatrix(); };
+  const zoom = (f) => { camGoal = null; camera.zoom = THREE.MathUtils.clamp(camera.zoom * f, 0.3, 5); camera.updateProjectionMatrix(); };
   $('#zoom-in').onclick = () => zoom(1.25); $('#zoom-out').onclick = () => zoom(0.8);
   $('#overview').onclick = overview;
 
@@ -569,7 +744,7 @@ async function init() {
     if (!reduced) elapsed += dt;
 
     // 진행도: 재생 중이면 흐르고, 아니면 목표로 부드럽게 수렴
-    if (state.playing && state.day === 1) {
+    if (state.playing) {
       state.progress = Math.min(1, state.progress + dt / 60); state.goal = state.progress;
       if (state.progress >= 1) { state.playing = false; $('#play').textContent = '▶'; }
       syncSelectedFromProgress();
@@ -607,7 +782,7 @@ async function init() {
     controls.update();
     const w = innerWidth, h = innerHeight;
     places.forEach((p, i) => {
-      const v = p.pos.clone().add(new THREE.Vector3(0, i === 3 ? 215 : 28, 0)).project(camera);
+      const v = p.pos.clone().add(new THREE.Vector3(0, p.pinH ?? 28, 0)).project(camera);
       pinEls[i].style.left = `${(v.x * 0.5 + 0.5) * w}px`; pinEls[i].style.top = `${(-v.y * 0.5 + 0.5) * h}px`;
       pinEls[i].style.display = Math.abs(v.x) > 1.2 || Math.abs(v.y) > 1.2 ? 'none' : '';
     });
