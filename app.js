@@ -3,6 +3,7 @@ import { OrbitControls } from './vendor/OrbitControls.js';
 import { mergeGeometries } from './vendor/BufferGeometryUtils.js';
 import { DAYS, SOFT_CLOSE } from './days.js';
 import { FOOD, FOOD_CHANNEL } from './food.js';
+import { PICKS, PICKS_DATE } from './picks.js';
 
 const $ = (s) => document.querySelector(s);
 
@@ -177,9 +178,15 @@ let ready = false;
 function setDay(n) { if (ready && n !== state.day) loadDay(n); }
 document.querySelectorAll('.day').forEach((b) => { b.onclick = () => setDay(+b.dataset.day); });
 $('#back-day').onclick = () => setDay(1);
+let foodTab = 'tv';
 function renderFood() {
-  const maps = (it) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${it.en || it.name} ${it.address || '도쿄'}`.trim())}`;
-  $('#food-list').innerHTML = FOOD.map((g) => `<section><h4>${esc(g.area)}</h4>${g.items.map((it) => `
+  document.querySelectorAll('#food-tabs button').forEach((t) => t.setAttribute('aria-selected', String(t.dataset.tab === foodTab)));
+  $('#food-note').textContent = foodTab === 'tv'
+    ? '성시경의 먹을텐데에서 소개한 도쿄 식당이에요. 식당 정보는 영상 설명란 기준이고, 영업 여부와 예약은 방문 전에 직접 확인해 주세요.'
+    : `미쉐린 가이드 빕 구르망과 타베로그(일본 현지 평가) 기준으로 고르고, 구글 지도 4.0 이상·리뷰 100개 이상만 담았어요. 평점은 ${PICKS_DATE}에 직접 확인한 값이라 달라질 수 있어요. 타베로그 점수가 높다고 현지인이 많이 가는 곳이라는 뜻은 아니에요.`;
+  if (foodTab === 'tv') {
+    const maps = (it) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${it.en || it.name} ${it.address || '도쿄'}`.trim())}`;
+    $('#food-list').innerHTML = FOOD.map((g) => `<section><h4>${esc(g.area)}</h4>${g.items.map((it) => `
     <article class="food-item">
       <div class="food-head"><b>${esc(it.name)}</b><span class="tv">${esc(FOOD_CHANNEL)}</span></div>
       ${it.en ? `<p class="food-en">${esc(it.en)}</p>` : ''}
@@ -189,7 +196,24 @@ function renderFood() {
         <a href="${maps(it)}" target="_blank" rel="noopener">구글 지도 ↗</a>
       </div>
     </article>`).join('')}</section>`).join('');
+  } else {
+    const maps = (it) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${it.en} ${it.address}`)}`;
+    $('#food-list').innerHTML = PICKS.map((g) => `<section><h4>${esc(g.label)}</h4>${g.items.map((it) => `
+    <article class="food-item">
+      <div class="food-head"><b>${esc(it.name)}</b>
+        ${it.src === 'michelin' ? '<span class="tag mich">미쉐린 빕 구르망</span>' : `<span class="tag tabe">타베로그 ${esc(it.score)}</span>`}
+        <span class="tag gmap">구글 ★${it.g[0].toFixed(1)} (${it.g[1].toLocaleString()})</span></div>
+      <p class="food-en">${esc(it.en)} · ${esc(it.cuisine)}</p>
+      <p class="food-addr">${esc(it.address)}</p>
+      <div class="food-links">
+        <a href="${it.url}" target="_blank" rel="noopener">${it.src === 'michelin' ? '미쉐린 가이드' : '타베로그'} ↗</a>
+        <a href="${maps(it)}" target="_blank" rel="noopener">구글 지도 ↗</a>
+      </div>
+    </article>`).join('')}</section>`).join('');
+  }
+  $('#food-list').scrollTop = 0;
 }
+document.querySelectorAll('#food-tabs button').forEach((t) => { t.onclick = () => { foodTab = t.dataset.tab; renderFood(); }; });
 $('#food-btn').onclick = () => { renderFood(); $('#food').hidden = false; };
 $('#food-close').onclick = () => { $('#food').hidden = true; };
 $('#food').onclick = (e) => { if (e.target.id === 'food') $('#food').hidden = true; };
