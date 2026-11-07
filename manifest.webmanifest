@@ -1,0 +1,17 @@
+{
+  "name": "Tokyo, by the hour",
+  "short_name": "Tokyo",
+  "description": "하루를 시간 순서로 걷는 도쿄 여행 플래너",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#cfe4f2",
+  "theme_color": "#cfe4f2",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
