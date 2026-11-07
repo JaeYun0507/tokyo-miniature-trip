@@ -94,11 +94,14 @@ function clockAt(p) {
 function renderCard() {
   const i = state.selected, p = places[i], last = i === LAST;
   const next = last ? null : places[i + 1];
+  $('#card').classList.toggle('open', !!state.cardOpen);
   $('#card').innerHTML = `
+    <button class="grab" aria-label="장소 정보 펼치기" aria-expanded="${!!state.cardOpen}"><i></i></button>
     <div class="eyebrow">Day ${state.day} · Chapter ${String(i + 1).padStart(2, '0')} / ${String(places.length).padStart(2, '0')}${hasCard(p) ? '<span class="got">카드 획득 ✓</span>' : ''}</div>
     <div class="clock">${hhmm(p.from)}<span>– ${hhmm(p.to)}</span></div>
     <h2>${esc(p.name)}</h2>
     <p class="sub">${esc(p.en)} · ${esc(p.category)}</p>
+    <div class="more">
     <p class="desc">${esc(p.desc)}</p>
     <div class="chips">
       <span>${p.spent}분 머무르기</span><span>${esc(p.hours)}</span>
@@ -107,6 +110,7 @@ function renderCard() {
       ${last ? '' : `<a href="${gmapDir(p, next, 'walking')}" target="_blank" rel="noopener">도보 길찾기 ↗</a>
       <a href="${gmapDir(p, next, 'transit')}" target="_blank" rel="noopener">대중교통 ↗</a>`}
       <a href="${gmapDay()}" target="_blank" rel="noopener">오늘 동선 ↗</a>
+    </div>
     </div>
     ${last ? '<div class="leg"><span>여정의 끝이에요. 처음부터 다시 걸어볼까요?</span></div>' : `
     <div class="leg">
@@ -120,6 +124,7 @@ function renderCard() {
       <button id="prev" ${i === 0 ? 'disabled' : ''} aria-label="이전 장소">← 이전</button>
       <button id="next" class="next" aria-label="${last ? '처음으로' : '다음 장소'}">${last ? '↺ 처음으로' : '다음 →'}</button>
     </div>`;
+  $('.grab').onclick = () => { state.cardOpen = !state.cardOpen; renderCard(); };
   $('#prev').onclick = () => go(i - 1);
   $('#next').onclick = () => go(last ? 0 : i + 1);
   $('#card').querySelectorAll('[data-mode]').forEach((b) => {
@@ -772,7 +777,7 @@ async function init() {
     const view = w < 760 ? 760 : 640;
     camera.left = (-view * w) / h; camera.right = (view * w) / h; camera.top = view; camera.bottom = -view;
     // 카드가 가리지 않는 쪽으로 도시를 밀어 둠: 모바일은 위쪽, 데스크톱은 오른쪽
-    if (w < 760) camera.setViewOffset(w, h, 0, h * 0.18, w, h); else camera.setViewOffset(w, h, -w * 0.09, 0, w, h);
+    if (w < 760) camera.setViewOffset(w, h, 0, h * 0.27, w, h); else camera.setViewOffset(w, h, -w * 0.09, 0, w, h);
     camera.updateProjectionMatrix();
   };
   addEventListener('resize', resize); resize();
@@ -836,3 +841,25 @@ init().catch((e) => {
   $('#map-status').innerHTML = '3D 지도를 열지 못했어요. WebGL을 지원하는 브라우저에서 다시 열어주세요.<br><button onclick="location.reload()">다시 시도</button>';
   console.error(e);
 });
+
+/* ---------------------------------------------------------------
+   앱처럼 쓰기: 카드 밀어서 넘기기, 설치, 오프라인 저장
+---------------------------------------------------------------- */
+(() => {
+  const card = $('#card'); let sx = 0, sy = 0, t0 = 0;
+  card.addEventListener('touchstart', (e) => { const t = e.touches[0]; sx = t.clientX; sy = t.clientY; t0 = Date.now(); }, { passive: true });
+  card.addEventListener('touchend', (e) => {
+    const t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy;
+    if (Date.now() - t0 > 700 || e.target.closest('a,.seg')) return;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) { navigator.vibrate?.(8); go(state.selected + (dx < 0 ? 1 : -1)); }
+    else if (Math.abs(dy) > 40 && Math.abs(dy) > Math.abs(dx) * 1.5) { state.cardOpen = dy < 0; renderCard(); }
+  }, { passive: true });
+
+  const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+  const note = $('#install-note'), btn = $('#install'); let deferred = null;
+  addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferred = e; btn.hidden = false; });
+  btn.onclick = async () => { if (!deferred) return; deferred.prompt(); await deferred.userChoice.catch(() => {}); deferred = null; btn.hidden = true; };
+  addEventListener('appinstalled', () => { btn.hidden = true; toast('홈 화면에 설치했어요.'); });
+  if (!standalone && /iPhone|iPad|iPod/.test(navigator.userAgent)) { note.hidden = false; note.textContent = "아이폰·아이패드는 공유 버튼에서 '홈 화면에 추가'를 누르면 앱처럼 쓸 수 있어요."; }
+  if ('serviceWorker' in navigator && location.protocol !== 'file:') addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+})();
