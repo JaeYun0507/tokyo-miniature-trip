@@ -5,40 +5,126 @@ import { mergeGeometries } from './vendor/BufferGeometryUtils.js';
 const $ = (s) => document.querySelector(s);
 
 /* ---------------------------------------------------------------
-   데이터: 실제 장소 좌표. 운영시간·요금은 공식 사이트에서 다시 확인하세요.
+   데이터: 실제 장소 좌표(OpenStreetMap 기준). 운영시간·요금은 공식 사이트에서 다시 확인하세요.
+   날짜마다 중심 좌표·지도 데이터·기본 출발 시각이 달라요.
 ---------------------------------------------------------------- */
-const places = [
-  { id: 'shiba', name: '시바공원', en: 'Shiba Park', lat: 35.654817, lon: 139.74804, stay: 45,
-    category: '공원 · 산책', hours: '시설별 운영 시간이 달라요',
-    desc: '도쿄타워를 올려다보며 초록빛 산책로를 걸어요. 사진을 찍고 천천히 하루를 시작하기 좋은 첫 장소.',
-    link: 'https://www.gotokyo.org/en/spot/423/index.html' },
-  { id: 'zojoji', name: '조조지', en: 'Zōjō-ji Temple', lat: 35.657348, lon: 139.748157, stay: 50,
-    category: '사찰 · 문화', hours: '개방 시간과 행사 일정은 공식 사이트에서 확인',
-    desc: '오래된 사찰의 지붕 너머로 도쿄타워가 솟아 있어요. 경내와 산게다쓰몬을 천천히 둘러보세요.',
-    link: 'https://www.zojoji.or.jp/map/' },
-  { id: 'lunch', name: '공원 옆 카페', en: 'Café by the park', lat: 35.65815, lon: 139.750085, stay: 75,
-    category: '점심 · 카페', hours: '영업시간은 매장별로 달라요',
-    desc: '공원 옆 베이커리 카페에서 빵과 커피로 쉬어가는 점심. 가게는 여행 전에 직접 골라 바꿔도 좋아요.',
-    link: 'https://www.google.com/maps/search/?api=1&query=35.65815,139.750085' },
-  { id: 'tower', name: '도쿄타워', en: 'Tokyo Tower', lat: 35.658581, lon: 139.745438, stay: 120,
-    category: '전망대 · 랜드마크', hours: '전망대 운영 시간과 요금은 공식 사이트에서 확인',
-    desc: '도쿄를 상징하는 주황빛 철탑. 해 질 무렵 전망대에서 도시에 불이 켜지는 순간을 기다려 보세요.',
-    link: 'https://en.tokyotower.co.jp/fee/' },
-  { id: 'azabudai', name: '아자부다이 힐즈', en: 'Azabudai Hills', lat: 35.661586, lon: 139.740892, stay: 120,
-    category: '쇼핑 · 마켓', hours: '상점별 영업시간은 공식 사이트에서 확인',
-    desc: '곡선형 건축과 녹색 광장, 상점과 마켓이 이어지는 마지막 코스. 가미야초역과 연결돼 있어요.',
-    link: 'https://www.azabudai-hills.com/information/index.html' },
+const mapLink = (lat, lon) => `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`;
+const DAYS = {
+  1: {
+    area: 'Minato', start: 720, osm: 'osm.json', hx: 660, hz: 725,
+    center: { lat: 35.658581, lon: 139.745438 },
+    softClose: { zojoji: 17 * 60 + 30, azabudai: 20 * 60, lunch: 21 * 60, tower: 23 * 60 },
+    places: [
+      { id: 'shiba', name: '시바공원', en: 'Shiba Park', lat: 35.654817, lon: 139.74804, stay: 45,
+        category: '공원 · 산책', hours: '시설별 운영 시간이 달라요',
+        desc: '도쿄타워를 올려다보며 초록빛 산책로를 걸어요. 사진을 찍고 천천히 하루를 시작하기 좋은 첫 장소.',
+        link: 'https://www.gotokyo.org/en/spot/423/index.html' },
+      { id: 'zojoji', name: '조조지', en: 'Zōjō-ji Temple', lat: 35.657348, lon: 139.748157, stay: 50,
+        category: '사찰 · 문화', hours: '개방 시간과 행사 일정은 공식 사이트에서 확인',
+        desc: '오래된 사찰의 지붕 너머로 도쿄타워가 솟아 있어요. 경내와 산게다쓰몬을 천천히 둘러보세요.',
+        link: 'https://www.zojoji.or.jp/map/' },
+      { id: 'lunch', name: '공원 옆 카페', en: 'Café by the park', lat: 35.65815, lon: 139.750085, stay: 75,
+        category: '점심 · 카페', hours: '영업시간은 매장별로 달라요',
+        desc: '공원 옆 베이커리 카페에서 빵과 커피로 쉬어가는 점심. 가게는 여행 전에 직접 골라 바꿔도 좋아요.',
+        link: mapLink(35.65815, 139.750085) },
+      { id: 'tower', name: '도쿄타워', en: 'Tokyo Tower', lat: 35.658581, lon: 139.745438, stay: 120, pinY: 215,
+        category: '전망대 · 랜드마크', hours: '전망대 운영 시간과 요금은 공식 사이트에서 확인',
+        desc: '도쿄를 상징하는 주황빛 철탑. 해 질 무렵 전망대에서 도시에 불이 켜지는 순간을 기다려 보세요.',
+        link: 'https://en.tokyotower.co.jp/fee/' },
+      { id: 'azabudai', name: '아자부다이 힐즈', en: 'Azabudai Hills', lat: 35.661586, lon: 139.740892, stay: 120,
+        category: '쇼핑 · 마켓', hours: '상점별 영업시간은 공식 사이트에서 확인',
+        desc: '곡선형 건축과 녹색 광장, 상점과 마켓이 이어지는 마지막 코스. 가미야초역과 연결돼 있어요.',
+        link: 'https://www.azabudai-hills.com/information/index.html' },
+    ],
+  },
+  2: {
+    area: 'Asakusa', start: 930, osm: 'osm2.json', hx: 800, hz: 520,
+    center: { lat: 35.7127, lon: 139.8035 },
+    softClose: { sensoji: 17 * 60 },
+    places: [
+      { id: 'kaminari', name: '가미나리몬', en: 'Kaminarimon Gate', lat: 35.71087, lon: 139.79623, stay: 20, clear: 40,
+        category: '문 · 랜드마크', hours: '문 앞은 늘 열려 있어요',
+        desc: '커다란 붉은 초롱이 걸린 아사쿠사의 관문. 여기서부터 나카미세 상점가가 센소지까지 이어져요.',
+        link: 'https://www.senso-ji.jp/' },
+      { id: 'sensoji', name: '센소지', en: 'Sensō-ji Temple', lat: 35.7134, lon: 139.79553, stay: 60, clear: 70,
+        category: '사찰 · 문화', hours: '본당 개방 시간은 계절마다 달라요',
+        desc: '도쿄에서 가장 오래된 사찰. 본당과 오층탑, 향 연기가 오르는 경내를 천천히 걸어 보세요.',
+        link: 'https://www.senso-ji.jp/' },
+      { id: 'sumida', name: '스미다 공원', en: 'Sumida Park', lat: 35.71551, lon: 139.80314, stay: 50, clear: 60,
+        category: '공원 · 강변', hours: '공원은 늘 열려 있어요',
+        desc: '스미다강을 따라 걷는 강변 산책로. 건너편으로 스카이트리가 점점 크게 다가와요.',
+        link: mapLink(35.71551, 139.80314) },
+      { id: 'skytree', name: '도쿄 스카이트리', en: 'Tokyo Skytree', lat: 35.71005, lon: 139.81071, stay: 180, pinY: 330, clear: 80,
+        category: '전망대 · 랜드마크', hours: '전망대 운영 시간과 요금은 공식 사이트에서 확인',
+        desc: '높이 634m, 세계에서 가장 높은 전파탑. 해가 지면 푸른 조명이 켜지고, 아래 소라마치에서 저녁을 먹을 수 있어요.',
+        link: 'https://www.tokyo-skytree.jp/en/' },
+    ],
+  },
+  3: {
+    area: 'Shibuya', start: 810, osm: 'osm3.json', hx: 760, hz: 1000,
+    center: { lat: 35.667, lon: 139.704 },
+    softClose: { meiji: 17 * 60 },
+    places: [
+      { id: 'meiji', name: '메이지 신궁', en: 'Meiji Jingu', lat: 35.67484, lon: 139.69963, stay: 60, clear: 90,
+        category: '신사 · 숲', hours: '개방 시간은 일몰에 맞춰 달라져요',
+        desc: '도심 한가운데 울창한 숲속으로 이어지는 참배길. 큰 도리이를 지나면 소음이 멀어져요.',
+        link: 'https://www.meijijingu.or.jp/en/' },
+      { id: 'takeshita', name: '다케시타 거리', en: 'Takeshita Street', lat: 35.67116, lon: 139.70496, stay: 50, clear: 30,
+        category: '거리 · 쇼핑', hours: '가게마다 영업시간이 달라요',
+        desc: '크레페와 패션 가게가 빼곡한 하라주쿠의 좁은 골목. 유행이 가장 빨리 지나가는 거리예요.',
+        link: mapLink(35.67116, 139.70496) },
+      { id: 'omotesando', name: '오모테산도 힐즈', en: 'Omotesandō Hills', lat: 35.66721, lon: 139.7089, stay: 60, clear: 50,
+        category: '쇼핑 · 건축', hours: '상점별 영업시간은 공식 사이트에서 확인',
+        desc: '느티나무 가로수길을 따라 길게 이어진 쇼핑 공간. 나선형 경사로를 따라 천천히 내려오며 구경해요.',
+        link: 'https://www.omotesandohills.com/' },
+      { id: 'crossing', name: '시부야 스크램블 교차로', en: 'Shibuya Scramble Crossing', lat: 35.6595, lon: 139.7005, stay: 30, clear: 45,
+        category: '교차로 · 랜드마크', hours: '24시간',
+        desc: '신호가 바뀌면 사방에서 사람들이 한꺼번에 건너는 도쿄의 상징. 해 질 녘 전광판이 켜질 때가 가장 좋아요.',
+        link: mapLink(35.6595, 139.7005) },
+      { id: 'sky', name: '시부야 스카이', en: 'Shibuya Sky', lat: 35.65838, lon: 139.70222, stay: 120, pinY: 190, clear: 55,
+        category: '전망대', hours: '운영 시간과 예약은 공식 사이트에서 확인',
+        desc: '시부야 스크램블 스퀘어 꼭대기의 야외 전망대. 노을에서 야경으로 넘어가는 시간에 맞춰 올라가 보세요.',
+        link: 'https://www.shibuya-scramble-square.com/' },
+    ],
+  },
+  4: {
+    area: 'Ginza · Marunouchi', start: 600, osm: 'osm4.json', hx: 850, hz: 1000,
+    center: { lat: 35.6735, lon: 139.762 },
+    softClose: { tsukiji: 14 * 60 },
+    places: [
+      { id: 'tsukiji', name: '쓰키지 장외시장', en: 'Tsukiji Outer Market', lat: 35.66539, lon: 139.77047, stay: 70, clear: 60,
+        category: '시장 · 먹거리', hours: '가게 대부분이 오후 이른 시간에 문을 닫아요',
+        desc: '계란말이, 해산물 덮밥, 꼬치를 먹으며 걷는 시장 골목. 아침에 가야 가장 활기차요.',
+        link: 'https://www.tsukiji.or.jp/english/' },
+      { id: 'wako', name: '긴자 와코', en: 'Ginza Wako', lat: 35.67174, lon: 139.76501, stay: 70, clear: 32,
+        category: '거리 · 쇼핑', hours: '상점별 영업시간은 공식 사이트에서 확인',
+        desc: '긴자 4초메 교차로를 지키는 시계탑 건물. 백화점과 편집숍, 찻집이 모여 있는 거리예요.',
+        link: 'https://www.wako.co.jp/' },
+      { id: 'station', name: '도쿄역 마루노우치 역사', en: 'Tokyo Station Marunouchi', lat: 35.68115, lon: 139.76598, stay: 60, clear: 70,
+        category: '역사 · 건축', hours: '역사 외관은 늘 볼 수 있어요',
+        desc: '붉은 벽돌과 둥근 돔이 100년 넘게 서 있는 역사. 해가 지면 조명이 켜지는 모습이 특히 아름다워요.',
+        link: 'https://www.tokyostationcity.com/en/' },
+      { id: 'nijubashi', name: '황거 외원 · 니주바시', en: 'Imperial Palace Outer Garden', lat: 35.68022, lon: 139.7536, stay: 60, clear: 60,
+        category: '정원 · 역사', hours: '외원은 개방되지만 안쪽은 제한돼 있어요',
+        desc: '해자와 소나무, 돌다리가 어우러진 옛 에도성 터. 도심 속에서 가장 고요한 산책이 가능해요.',
+        link: 'https://www.kunaicho.go.jp/' },
+    ],
+  },
+};
+DAYS[1].roadLines = [ // 지도 데이터를 못 받았을 때만 쓰는 대체 도로
+  [[139.739, 35.660], [139.743, 35.6603], [139.746, 35.6605], [139.751, 35.6608]],
+  [[139.7501, 35.653], [139.7501, 35.662]], [[139.743, 35.653], [139.7436, 35.657], [139.746, 35.6605]],
+  [[139.739, 35.6552], [139.743, 35.6552], [139.7501, 35.6552]], [[139.7435, 35.6588], [139.7501, 35.6588]],
+  [[139.7395, 35.663], [139.7395, 35.657]],
 ];
-const LAST = places.length - 1;
-const CENTER = { lat: 35.658581, lon: 139.745438 };
+let DAY = DAYS[1], places = DAY.places, LAST = places.length - 1;
+let CENTER = DAY.center, P = {};
 const project = (lat, lon) => new THREE.Vector3((lon - CENTER.lon) * 90500, 0, -(lat - CENTER.lat) * 111200);
-places.forEach((p) => { p.pos = project(p.lat, p.lon); });
-const SOFT_CLOSE = { zojoji: 17 * 60 + 30, azabudai: 20 * 60, lunch: 21 * 60, tower: 23 * 60 };
 
 const state = {
-  day: 1, selected: 0, pace: 1, start: 720,
+  day: 1, selected: 0, pace: 1, start: DAY.start, userStart: false,
   playing: false, progress: 0, goal: 0, dragging: false,
-  modes: Array(LAST).fill('walk'), minutes: Array(LAST).fill(10), distances: Array(LAST).fill(400),
+  modes: [], minutes: [], distances: [],
 };
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -79,7 +165,7 @@ function renderCard() {
   const i = state.selected, p = places[i], last = i === LAST;
   const next = last ? null : places[i + 1];
   $('#card').innerHTML = `
-    <div class="eyebrow">Chapter ${String(i + 1).padStart(2, '0')} / ${String(places.length).padStart(2, '0')}</div>
+    <div class="eyebrow">Day ${state.day} · ${esc(DAY.area)} · ${String(i + 1).padStart(2, '0')} / ${String(places.length).padStart(2, '0')}</div>
     <div class="clock">${hhmm(p.from)}<span>– ${hhmm(p.to)}</span></div>
     <h2>${esc(p.name)}</h2>
     <p class="sub">${esc(p.en)} · ${esc(p.category)}</p>
@@ -140,14 +226,14 @@ function go(i) {
   $('#play').textContent = '▶';
 }
 
-function setDay(n) {
-  state.day = n; state.playing = false;
-  $('#empty-day').hidden = n === 1;
-  $('#empty-title').textContent = `${n}일째`;
+let loading = false;
+async function setDay(n) {
+  if (loading || !scene || n === state.day) return;
+  loading = true; state.playing = false; $('#play').textContent = '▶';
   document.querySelectorAll('.day').forEach((b) => { const on = +b.dataset.day === n; b.classList.toggle('active', on); b.toggleAttribute('aria-current', on); });
+  try { await loadDay(n); } finally { loading = false; }
 }
 document.querySelectorAll('.day').forEach((b) => { b.onclick = () => setDay(+b.dataset.day); });
-$('#back-day').onclick = () => setDay(1);
 
 $('#open-plan').onclick = () => { $('#sheet').hidden = false; };
 $('#sheet-cancel').onclick = () => { $('#sheet').hidden = true; };
@@ -155,10 +241,10 @@ $('#sheet').onclick = (e) => { if (e.target.id === 'sheet') $('#sheet').hidden =
 $('#sheet-apply').onclick = () => {
   const [h, m] = $('#start').value.split(':').map(Number);
   if (!Number.isFinite(h + m)) { toast('출발 시간을 입력해 주세요.'); return; }
-  state.start = h * 60 + m; state.pace = +document.querySelector('input[name=pace]:checked').value;
+  state.start = h * 60 + m; state.userStart = true; state.pace = +document.querySelector('input[name=pace]:checked').value;
   $('#sheet').hidden = true;
   refresh(); go(0);
-  const late = places.filter((p) => SOFT_CLOSE[p.id] && p.to > SOFT_CLOSE[p.id]);
+  const late = places.filter((p) => DAY.softClose[p.id] && p.to > DAY.softClose[p.id]);
   toast(late.length ? `일정을 갱신했어요. ${late.map((p) => p.name).join(', ')}의 운영시간을 확인해 주세요.` : '일정을 다시 계획했어요.');
 };
 
@@ -239,7 +325,7 @@ function applySky(clock) {
    3D 도시
 ---------------------------------------------------------------- */
 let camera, renderer, controls, scene, staticGroup, routeGroup, traveler;
-let routes = [], people = [], cars = [], pinEls = [];
+let routes = [], people = [], cars = [], pinEls = [], dyn = null;
 let camGoal = null; // {target: Vector3, zoom}
 
 const mats = new Map();
@@ -280,7 +366,7 @@ function building(parent, x, z, w, d, h, color) {
 }
 
 function tokyoTower(parent) {
-  const g = new THREE.Group(); g.position.copy(places[3].pos);
+  const g = new THREE.Group(); g.position.copy(P.tower.pos);
   const orange = emat('#ec4a2a', glowTower), white = emat('#f3efe4', glowTower), deck = emat('#f0ebdc', glowTower);
   box(g, 0, 5, 0, 47, 10, 35, '#d9d2c3');
   const lv = [[0, 38], [28, 28], [55, 20], [82, 13], [107, 9], [134, 6], [158, 3.7], [187, 2.3]];
@@ -300,7 +386,7 @@ function tokyoTower(parent) {
   parent.add(g);
 }
 function temple(parent) {
-  const g = new THREE.Group(); g.position.copy(places[1].pos);
+  const g = new THREE.Group(); g.position.copy(P.zojoji.pos);
   box(g, 0, 0.5, 0, 87, 1, 72, '#d6d1c3');
   box(g, 0, 12, 0, 54, 21, 33, '#e6dbc2');
   for (let x = -25; x <= 25; x += 8) box(g, x, 12, 18, 2, 22, 2, '#7b5a48');
@@ -368,12 +454,6 @@ function shortest(a, b, mode) {
   return [a.clone().setY(2.5), ...pts, b.clone().setY(2.5)];
 }
 
-const roadLines = [
-  [[139.739, 35.660], [139.743, 35.6603], [139.746, 35.6605], [139.751, 35.6608]],
-  [[139.7501, 35.653], [139.7501, 35.662]], [[139.743, 35.653], [139.7436, 35.657], [139.746, 35.6605]],
-  [[139.739, 35.6552], [139.743, 35.6552], [139.7501, 35.6552]], [[139.7435, 35.6588], [139.7501, 35.6588]],
-  [[139.7395, 35.663], [139.7395, 35.657]],
-];
 
 function osmCity(osm) {
   const lines = [];
@@ -391,11 +471,22 @@ function osmCity(osm) {
     pts.drive = drive; lines.push(pts);
   }
   linked.walk = largestComponent('walk'); linked.taxi = largestComponent('taxi');
+  const flatArea = (list, y, color) => {
+    for (const flat of list || []) {
+      const v = []; for (let i = 0; i < flat.length; i += 2) v.push(new THREE.Vector2(flat[i], -flat[i + 1]));
+      if (v.length < 3) continue;
+      try {
+        const geo = new THREE.ShapeGeometry(new THREE.Shape(v)); geo.rotateX(-Math.PI / 2); geo.translate(0, y, 0);
+        staticGroup.add(new THREE.Mesh(geo, mat(color)));
+      } catch { /* 잘못된 다각형은 건너뜀 */ }
+    }
+  };
+  flatArea(osm.g, 0.08, '#c4d4ab'); flatArea(osm.w, 0.14, '#a9c6d6');
   for (const [h0, flat] of osm.b) {
     const xs = [], zs = []; for (let i = 0; i < flat.length; i += 2) { xs.push(flat[i]); zs.push(flat[i + 1]); }
     const minx = Math.min(...xs), maxx = Math.max(...xs), minz = Math.min(...zs), maxz = Math.max(...zs);
     const cx = (minx + maxx) / 2, cz = (minz + maxz) / 2;
-    if (places.some((p) => Math.hypot(cx - p.pos.x, cz - p.pos.z) < 65) || maxx - minx > 170 || maxz - minz > 170) continue;
+    if (places.some((p) => Math.hypot(cx - p.pos.x, cz - p.pos.z) < (p.clear || 65)) || maxx - minx > 170 || maxz - minz > 170) continue;
     const shape = new THREE.Shape(xs.map((x, i) => new THREE.Vector2(x, -zs[i])));
     const h = Math.min(170, Math.max(8, h0 || 12 + rand() * 22));
     const geo = new THREE.ExtrudeGeometry(shape, { depth: h, bevelEnabled: false }); geo.rotateX(-Math.PI / 2);
@@ -406,31 +497,124 @@ function osmCity(osm) {
   return lines;
 }
 
+/* ---- 날짜별 랜드마크 ---- */
+function parkPatch(parent, pos, w, d, trees, color = '#b4c79e', s = 0.8) {
+  box(parent, pos.x, 0.6, pos.z, w, 1.2, d, color);
+  for (let i = 0; i < trees; i++) tree(parent, pos.x + (rand() - 0.5) * (w - 10), pos.z + (rand() - 0.5) * (d - 10), s);
+}
+function group(parent, pos) { const g = new THREE.Group(); g.position.copy(pos); parent.add(g); return g; }
+function pagoda(g, x, z, floors, wall, roof) {
+  for (let k = 0; k < floors; k++) {
+    const w = 15 - k * 1.8;
+    box(g, x, 6 + k * 9, z, w - 3, 8, w - 3, wall);
+    box(g, x, 11 + k * 9, z, w + 4, 1.6, w + 4, roof);
+  }
+  cyl(g, x, 6 + floors * 9 + 4, z, 0.8, 9, '#d6b25e');
+}
+
+const LANDMARKS = {
+  1(parent) {
+    tokyoTower(parent); temple(parent);
+    const lp = P.lunch.pos;
+    box(parent, lp.x, 6, lp.z, 25, 12, 14, '#b88f62'); box(parent, lp.x, 12.7, lp.z, 28, 1.4, 17, '#c6a37d');
+    parkPatch(parent, P.shiba.pos, 120, 90, 18);
+    const az = P.azabudai.pos;
+    box(parent, az.x, 0.6, az.z, 85, 1.2, 68, '#c3cfae');
+    building(parent, az.x - 50, az.z - 30, 55, 48, 160, '#b7c8c6');
+    for (let i = 0; i < 14; i++) tree(parent, az.x + (rand() - 0.5) * 90, az.z + (rand() - 0.5) * 60, 0.75);
+  },
+  2(parent) {
+    // 가미나리몬: 붉은 문과 커다란 초롱
+    const k = group(parent, P.kaminari.pos);
+    for (const x of [-15, 15]) box(k, x, 12, 0, 6, 24, 7, '#c8402f');
+    box(k, 0, 26, 0, 42, 9, 13, '#c8402f'); box(k, 0, 32.5, 0, 52, 3, 19, '#4d5754'); box(k, 0, 35, 0, 36, 3, 14, '#4d5754');
+    cyl(k, 0, 15, 0, 5, 13, '#d94a38');
+    // 센소지: 본당 + 오층탑
+    const s = group(parent, P.sensoji.pos);
+    box(s, 0, 0.5, 0, 110, 1, 90, '#d6d1c3');
+    box(s, 0, 11, 0, 46, 20, 30, '#b9503a');
+    for (let q = 0; q < 6; q++) box(s, 0, 23 + q * 1.3, 0, 58 - q * 5, 1.8, 40 - q * 4.5, '#4d5754');
+    pagoda(s, -52, 20, 5, '#b9503a', '#4d5754');
+    for (const x of [-42, 42]) tree(s, x, -34, 0.8);
+    // 스미다 공원
+    parkPatch(parent, P.sumida.pos, 150, 55, 16);
+    // 스카이트리: 가늘게 좁아지는 흰 탑
+    const t = group(parent, P.skytree.pos);
+    const body = emat('#dfe9ef', glowTower), deck = emat('#8fd0ef', glowTower);
+    box(t, 0, 3, 0, 70, 6, 70, '#d9d2c3');
+    for (let y = 0; y < 300; y += 30) cyl(t, 0, y + 15, 0, 14 - (y / 300) * 8.5, 31, body);
+    cyl(t, 0, 305, 0, 11, 12, deck); cyl(t, 0, 322, 0, 8, 10, deck);
+    for (let y = 330; y < 440; y += 22) cyl(t, 0, y + 11, 0, 3.6 - (y - 330) / 70, 23, body);
+  },
+  3(parent) {
+    // 메이지 신궁: 숲과 도리이
+    const m = P.meiji.pos;
+    parkPatch(parent, m, 180, 180, 46, '#a9c08e', 0.95);
+    const tg = group(parent, new THREE.Vector3(m.x, 0, m.z + 78));
+    for (const x of [-12, 12]) box(tg, x, 14, 0, 4.5, 28, 4.5, '#6b2f26');
+    box(tg, 0, 30, 0, 42, 4, 6, '#2f2a28'); box(tg, 0, 24, 0, 34, 2.4, 4, '#6b2f26');
+    box(parent, m.x, 8, m.z - 10, 36, 14, 22, '#e6dbc2'); box(parent, m.x, 17, m.z - 10, 46, 3, 30, '#4d5754');
+    // 다케시타 거리: 알록달록한 작은 가게들
+    const tk = P.takeshita.pos, pop = ['#f0a8b8', '#a8d0f0', '#f4d58a', '#b8e0b4', '#d9b9e8'];
+    for (let i = 0; i < 9; i++) box(parent, tk.x + (i - 4) * 9, 7, tk.z + (i - 4) * 5 + (i % 2 ? 10 : -10), 8, 14, 9, pop[i % 5]);
+    // 오모테산도 힐즈: 길게 낮은 건물 + 가로수
+    const o = P.omotesando.pos;
+    building(parent, o.x, o.z, 78, 22, 24, '#d8d1c3'); box(parent, o.x, 12, o.z + 12, 74, 5, 2, '#b7c8c6');
+    for (let i = -4; i <= 4; i++) tree(parent, o.x + i * 16, o.z + 24, 0.7);
+    // 시부야 스크램블: 횡단보도와 전광판
+    const c = P.crossing.pos;
+    box(parent, c.x, 0.4, c.z, 64, 0.8, 64, '#8d949a');
+    for (let i = -3; i <= 3; i++) { box(parent, c.x + i * 7, 1, c.z, 3.2, 0.3, 60, '#f3efe4'); box(parent, c.x, 1.05, c.z + i * 7, 60, 0.3, 3.2, '#f3efe4'); }
+    const scr = [emat('#7fd0ff', glowLamps), emat('#ff9ac8', glowLamps), emat('#ffe38a', glowLamps)];
+    [[-42, -40], [42, -40], [-42, 42]].forEach(([dx, dz], i) => { building(parent, c.x + dx, c.z + dz, 26, 26, 38 + i * 9, '#cfc8ba'); box(parent, c.x + dx * 0.82, 30, c.z + dz * 0.82, 14, 9, 1.4, scr[i]); });
+    // 시부야 스카이: 높은 유리 타워
+    const sk = P.sky.pos;
+    box(parent, sk.x, 75, sk.z, 44, 150, 40, '#b7c4c9'); box(parent, sk.x, 152, sk.z, 48, 4, 44, '#e7e2d6');
+    box(parent, sk.x, 158, sk.z, 36, 6, 32, emat('#cfeaff', glowLamps));
+  },
+  4(parent) {
+    // 쓰키지 장외시장: 낮은 지붕의 가게 줄
+    const t = P.tsukiji.pos, awn = ['#d96a4a', '#4a8fb0', '#e0b24a'];
+    for (let r = 0; r < 2; r++) for (let i = -3; i <= 3; i++) {
+      box(parent, t.x + i * 15, 5, t.z + r * 22 - 11, 12, 10, 14, '#e0d6bf'); box(parent, t.x + i * 15, 10.5, t.z + r * 22 - 11, 13, 1.4, 15, awn[(i + r + 6) % 3]);
+    }
+    // 긴자 와코: 시계탑 건물
+    const w = P.wako.pos;
+    building(parent, w.x, w.z, 34, 28, 30, '#e7dfd0');
+    box(parent, w.x, 40, w.z, 14, 20, 14, '#e7dfd0'); cyl(parent, w.x, 54, w.z, 7, 7, '#4d5754');
+    box(parent, w.x, 41, w.z + 7.2, 8, 8, 0.8, emat('#fff2c0', glowLamps));
+    // 도쿄역: 붉은 벽돌 역사 + 양끝 돔
+    const s = P.station.pos;
+    box(parent, s.x, 12, s.z, 190, 24, 26, '#b4604a'); box(parent, s.x, 25.5, s.z, 194, 3, 30, '#4d5754');
+    box(parent, s.x, 14, s.z + 13.2, 180, 3, 0.8, emat('#ffd08a', glowLamps));
+    for (const x of [-82, 82]) { cyl(parent, s.x + x, 30, s.z, 11, 12, '#b4604a'); cyl(parent, s.x + x, 40, s.z, 9, 8, '#4d5754'); }
+    box(parent, s.x, 32, s.z, 30, 14, 26, '#b4604a');
+    // 황거 외원: 잔디, 소나무, 돌다리
+    const n = P.nijubashi.pos;
+    box(parent, n.x, 0.6, n.z, 130, 1.2, 100, '#c3cfae');
+    for (let i = 0; i < 16; i++) tree(parent, n.x + (rand() - 0.5) * 120, n.z + (rand() - 0.5) * 90, 0.8);
+    box(parent, n.x + 40, 2.5, n.z - 4, 30, 5, 10, '#d6d1c3'); box(parent, n.x + 40, 6, n.z - 4, 30, 1.2, 12, '#cfc8ba');
+  },
+};
+
 function buildCity(osm) {
   staticGroup = new THREE.Group(); scene.add(staticGroup);
-  box(staticGroup, 0, -6, 0, 1320, 10, 1450, '#c9cbbc');
-  box(staticGroup, 0, -0.5, 0, 1320, 1, 1450, '#d2d3c4');
+  box(staticGroup, 0, -6, 0, DAY.hx * 2, 10, DAY.hz * 2, '#c9cbbc');
+  box(staticGroup, 0, -0.5, 0, DAY.hx * 2, 1, DAY.hz * 2, '#d2d3c4');
   let lines;
   if (osm) lines = osmCity(osm);
   else {
-    lines = roadLines.map((r) => r.map(([lon, lat]) => project(lat, lon)));
+    // 지도 데이터를 못 받았을 때: 장소를 잇는 직선 도로와 임의의 건물로 대신 채움
+    lines = DAY.roadLines ? DAY.roadLines.map((r) => r.map(([lon, lat]) => project(lat, lon)))
+      : places.slice(0, -1).map((p, i) => [p.pos, new THREE.Vector3(places[i + 1].pos.x, 0, p.pos.z), places[i + 1].pos]);
     lines.forEach((pts) => { for (let i = 1; i < pts.length; i++) road(staticGroup, pts[i - 1], pts[i], 12, '#8d949a'); });
     for (let i = 0; i < 130; i++) {
-      const x = (rand() - 0.5) * 1050, z = (rand() - 0.5) * 1100;
+      const x = (rand() - 0.5) * DAY.hx * 1.6, z = (rand() - 0.5) * DAY.hz * 1.6;
       if (places.some((p) => Math.hypot(x - p.pos.x, z - p.pos.z) < 95)) continue;
       building(staticGroup, x, z, 15 + rand() * 20, 14 + rand() * 18, 14 + rand() * 48, ['#ebe6dc', '#e2dccf', '#d8d1c3'][i % 3]);
     }
   }
-  tokyoTower(staticGroup); temple(staticGroup);
-  const lp = places[2].pos;
-  box(staticGroup, lp.x, 6, lp.z, 25, 12, 14, '#b88f62'); box(staticGroup, lp.x, 12.7, lp.z, 28, 1.4, 17, '#c6a37d');
-  const sp = places[0].pos;
-  box(staticGroup, sp.x, 0.6, sp.z, 120, 1.2, 90, '#b4c79e');
-  for (let i = 0; i < 18; i++) tree(staticGroup, sp.x + (rand() - 0.5) * 110, sp.z + (rand() - 0.5) * 80, 0.8);
-  const az = places[4].pos;
-  box(staticGroup, az.x, 0.6, az.z, 85, 1.2, 68, '#c3cfae');
-  building(staticGroup, az.x - 50, az.z - 30, 55, 48, 160, '#b7c8c6');
-  for (let i = 0; i < 14; i++) tree(staticGroup, az.x + (rand() - 0.5) * 90, az.z + (rand() - 0.5) * 60, 0.75);
+  LANDMARKS[state.day](staticGroup);
   mergeStatic();
   return lines;
 }
@@ -493,7 +677,61 @@ function focusOn(pos, zoom = 1.7) {
   if (!controls) return;
   camGoal = { target: pos.clone().add(new THREE.Vector3(0, 25, 0)), zoom: reduced ? zoom : zoom };
 }
-function overview() { camGoal = { target: new THREE.Vector3(0, 35, 0), zoom: 0.95 }; }
+function overview() { camGoal = { target: new THREE.Vector3(0, 35, 0), zoom: Math.max(0.58, (0.95 * 725) / Math.max(DAY.hx, DAY.hz)) }; }
+
+/* ---- 날짜 불러오기: 지도 데이터를 받고 도시를 새로 짓는다 ---- */
+const osmCache = {};
+async function loadDay(n) {
+  const cfg = DAYS[n];
+  $('#map-status').textContent = `${n}일째 거리를 준비하고 있어요…`; $('#map-status').hidden = false;
+  let osm = osmCache[n];
+  if (osm === undefined) {
+    osm = null;
+    try { const res = await fetch(`./${cfg.osm}`); if (res.ok) osm = await res.json(); } catch { /* 대체 도시 */ }
+    osmCache[n] = osm;
+  }
+  // 이전 날짜 정리
+  for (const g of [staticGroup, routeGroup, dyn]) {
+    if (!g) continue;
+    g.traverse((o) => { if (o.geometry) o.geometry.dispose(); });
+    scene.remove(g);
+  }
+  graph.clear(); linked.walk = linked.taxi = null;
+  glowTower.length = 0; glowLamps.length = 0; people = []; cars = []; routes = [];
+  $('#pins').innerHTML = ''; pinEls = [];
+  // 새 날짜 설정
+  state.day = n; DAY = cfg; places = cfg.places; LAST = places.length - 1; CENTER = cfg.center;
+  places.forEach((p) => { p.pos = project(p.lat, p.lon); }); P = Object.fromEntries(places.map((p) => [p.id, p]));
+  state.selected = 0; state.progress = 0; state.goal = 0; state.playing = false;
+  state.modes = Array(LAST).fill('walk'); state.minutes = Array(LAST).fill(10); state.distances = Array(LAST).fill(400);
+  if (!state.userStart) { state.start = cfg.start; $('#start').value = hhmm(cfg.start); }
+  const s = Math.max(cfg.hx, cfg.hz) * 1.15;
+  Object.assign(sunLight.shadow.camera, { left: -s, right: s, top: s, bottom: -s }); sunLight.shadow.camera.updateProjectionMatrix();
+
+  seed = 829 + n * 17;
+  let lines;
+  try { lines = buildCity(osm); } catch (e) {
+    console.warn('OSM 도시 생성 실패, 대체 도시 사용', e);
+    scene.remove(staticGroup); graph.clear(); glowTower.length = 0; glowLamps.length = 0; lines = buildCity(null);
+  }
+  dyn = new THREE.Group(); scene.add(dyn);
+  const long = lines.filter((pts) => pts.length >= 2 && pts[0].distanceTo(pts[pts.length - 1]) > 70);
+  const walkLines = long.filter((p) => p.drive !== true), driveLines = long.filter((p) => p.drive !== false);
+  const pick = (arr, k) => Array.from({ length: Math.min(k, arr.length) }, (_, i) => arr[Math.floor(((i + 0.5) * arr.length) / k)]);
+  pick(walkLines.length ? walkLines : long, 20).forEach((pts, i) => {
+    const g = person(['#c4ad84', '#54665d', '#bd8158', '#ded3b8'][i % 4]); g.scale.setScalar(0.85); dyn.add(g);
+    people.push({ g, curve: pathOf(pts), side: pts.drive === false ? 0 : 5, offset: rand() });
+  });
+  pick(driveLines.length ? driveLines : long, 10).forEach((pts, i) => { const car = vehicle(i % 3 === 0); dyn.add(car); cars.push({ g: car, curve: pathOf(pts), offset: rand() }); });
+
+  places.forEach((p, i) => {
+    const el = document.createElement('button');
+    el.className = 'pin'; el.innerHTML = `<i>${i + 1}</i><span>${esc(p.name)}</span>`; el.setAttribute('aria-label', `${i + 1}번 ${p.name}`);
+    el.onclick = () => go(i); $('#pins').appendChild(el); pinEls.push(el);
+  });
+  drawRoutes(); refresh(); go(0);
+  $('#map-status').hidden = true;
+}
 
 async function init() {
   scene = new THREE.Scene();
@@ -520,33 +758,12 @@ async function init() {
   Object.assign(sunLight.shadow.camera, { left: -800, right: 800, top: 800, bottom: -800, far: 2400 }); sunLight.shadow.bias = -0.001;
   scene.add(sunLight);
 
-  let osm = null;
-  try { const res = await fetch('./osm.json'); if (res.ok) osm = await res.json(); } catch { /* 대체 도시 */ }
-  let lines;
-  try { lines = buildCity(osm); } catch (e) { console.warn('OSM 도시 생성 실패, 대체 도시 사용', e); scene.remove(staticGroup); graph.clear(); osm = null; lines = buildCity(null); }
-
-  const long = lines.filter((pts) => pts.length >= 2 && pts[0].distanceTo(pts[pts.length - 1]) > 70);
-  const walkLines = long.filter((p) => p.drive !== true), driveLines = long.filter((p) => p.drive !== false);
-  const pick = (arr, n) => Array.from({ length: Math.min(n, arr.length) }, (_, i) => arr[Math.floor(((i + 0.5) * arr.length) / n)]);
-  pick(walkLines.length ? walkLines : long, 20).forEach((pts, i) => {
-    const g = person(['#c4ad84', '#54665d', '#bd8158', '#ded3b8'][i % 4]); g.scale.setScalar(0.85); scene.add(g);
-    people.push({ g, curve: pathOf(pts), side: pts.drive === false ? 0 : 5, offset: rand() });
-  });
-  pick(driveLines.length ? driveLines : long, 10).forEach((pts, i) => { const car = vehicle(i % 3 === 0); scene.add(car); cars.push({ g: car, curve: pathOf(pts), offset: rand() }); });
-
   traveler = person('#f0e6cf', true); traveler.scale.setScalar(1.9); scene.add(traveler);
   const ring = new THREE.Mesh(new THREE.TorusGeometry(7, 0.8, 6, 32), new THREE.MeshBasicMaterial({ color: '#e2452b' }));
   ring.rotation.x = Math.PI / 2; ring.position.y = 0.7; traveler.add(ring);
 
-  places.forEach((p, i) => {
-    const el = document.createElement('button');
-    el.className = 'pin'; el.innerHTML = `<i>${i + 1}</i><span>${esc(p.name)}</span>`; el.setAttribute('aria-label', `${i + 1}번 ${p.name}`);
-    el.onclick = () => go(i); $('#pins').appendChild(el); pinEls.push(el);
-  });
-  drawRoutes(); refresh(); go(0);
+  await loadDay(1);
   camera.zoom = 1.3; camera.updateProjectionMatrix();
-  $('#map-status').hidden = true;
-
   const zoom = (f) => { camGoal = null; camera.zoom = THREE.MathUtils.clamp(camera.zoom * f, 0.55, 5); camera.updateProjectionMatrix(); };
   $('#zoom-in').onclick = () => zoom(1.25); $('#zoom-out').onclick = () => zoom(0.8);
   $('#overview').onclick = overview;
@@ -569,7 +786,7 @@ async function init() {
     if (!reduced) elapsed += dt;
 
     // 진행도: 재생 중이면 흐르고, 아니면 목표로 부드럽게 수렴
-    if (state.playing && state.day === 1) {
+    if (state.playing) {
       state.progress = Math.min(1, state.progress + dt / 60); state.goal = state.progress;
       if (state.progress >= 1) { state.playing = false; $('#play').textContent = '▶'; }
       syncSelectedFromProgress();
@@ -607,7 +824,8 @@ async function init() {
     controls.update();
     const w = innerWidth, h = innerHeight;
     places.forEach((p, i) => {
-      const v = p.pos.clone().add(new THREE.Vector3(0, i === 3 ? 215 : 28, 0)).project(camera);
+      const v = p.pos.clone().add(new THREE.Vector3(0, p.pinY || 28, 0)).project(camera);
+      if (!pinEls[i]) return;
       pinEls[i].style.left = `${(v.x * 0.5 + 0.5) * w}px`; pinEls[i].style.top = `${(-v.y * 0.5 + 0.5) * h}px`;
       pinEls[i].style.display = Math.abs(v.x) > 1.2 || Math.abs(v.y) > 1.2 ? 'none' : '';
     });
