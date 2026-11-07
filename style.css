@@ -181,3 +181,31 @@ fieldset label{flex-direction:row;align-items:center;gap:10px;font-size:14px;col
 .tag.mich{background:#b3202a}
 .tag.tabe{background:#7a5c1e}
 .tag.gmap{background:#2f6b3f}
+
+/* 앱처럼 쓰기: 터치 기본 동작 정리 */
+html,body{overscroll-behavior:none;height:100dvh}
+*{-webkit-tap-highlight-color:transparent}
+button,input[type=range]{touch-action:manipulation}
+.grab{display:none}
+.more{display:block}
+#install[hidden],#install-note[hidden]{display:none}
+
+/* 모바일: 카드를 아래에서 올라오는 시트로. 기본은 작게, 손잡이를 누르거나 위로 밀면 펼쳐져요 */
+@media(max-width:760px){
+  #card{padding:6px 18px 14px;touch-action:pan-y}
+  .grab{display:flex;justify-content:center;width:100%;min-height:28px;align-items:center;margin:0 0 2px}
+  .grab i{display:block;width:44px;height:5px;border-radius:99px;background:var(--ink-2);opacity:.45}
+  #card .more{display:none}
+  #card.open .more{display:block;max-height:34vh;overflow:auto}
+  #card.open .desc{display:block}
+  #card.open .chips span:nth-child(2){display:inline-block}
+  .clock{font-size:34px;margin:4px 0 0}
+  #card h2{font-size:21px}
+  .sub{margin-bottom:8px}
+  .tools{top:calc(64px + env(safe-area-inset-top));bottom:auto;right:12px;grid-auto-flow:row}
+  .tools button{width:44px;height:44px}
+  .nav button,.seg button{min-height:44px}
+  .st{min-width:44px}
+}
+@media(max-width:760px) and (max-height:620px){ #card .eyebrow,#card .sub{display:none} }
+@media(max-width:760px){ #card:not(.open) .sub{display:none} #card:not(.open) .leg{padding:8px 0} }
