@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
 import { mergeGeometries } from './vendor/BufferGeometryUtils.js';
 import { DAYS, SOFT_CLOSE } from './days.js';
+import { FOOD, FOOD_CHANNEL } from './food.js';
 
 const $ = (s) => document.querySelector(s);
 
@@ -176,6 +177,22 @@ let ready = false;
 function setDay(n) { if (ready && n !== state.day) loadDay(n); }
 document.querySelectorAll('.day').forEach((b) => { b.onclick = () => setDay(+b.dataset.day); });
 $('#back-day').onclick = () => setDay(1);
+function renderFood() {
+  const maps = (it) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${it.en || it.name} ${it.address || '도쿄'}`.trim())}`;
+  $('#food-list').innerHTML = FOOD.map((g) => `<section><h4>${esc(g.area)}</h4>${g.items.map((it) => `
+    <article class="food-item">
+      <div class="food-head"><b>${esc(it.name)}</b><span class="tv">${esc(FOOD_CHANNEL)}</span></div>
+      ${it.en ? `<p class="food-en">${esc(it.en)}</p>` : ''}
+      <p class="food-addr">${it.address ? esc(it.address) : esc(it.note)}</p>
+      <div class="food-links">
+        <a href="https://www.youtube.com/watch?v=${it.video.id}" target="_blank" rel="noopener">영상 보기 ▶ ${esc(it.video.title)}</a>
+        <a href="${maps(it)}" target="_blank" rel="noopener">구글 지도 ↗</a>
+      </div>
+    </article>`).join('')}</section>`).join('');
+}
+$('#food-btn').onclick = () => { renderFood(); $('#food').hidden = false; };
+$('#food-close').onclick = () => { $('#food').hidden = true; };
+$('#food').onclick = (e) => { if (e.target.id === 'food') $('#food').hidden = true; };
 $('#deck-btn').onclick = () => { renderDeck(); $('#deck').hidden = false; };
 $('#deck-close').onclick = () => { $('#deck').hidden = true; };
 $('#deck').onclick = (e) => { if (e.target.id === 'deck') $('#deck').hidden = true; };
@@ -208,7 +225,7 @@ $('#progress').addEventListener('change', () => {
   go(Math.round(state.progress * LAST));
 });
 addEventListener('keydown', (e) => {
-  if (e.target.closest('input,textarea') || !$('#sheet').hidden || !$('#deck').hidden) return;
+  if (e.target.closest('input,textarea') || !$('#sheet').hidden || !$('#deck').hidden || !$('#food').hidden) return;
   if (e.key === 'ArrowRight') go(state.selected + 1);
   if (e.key === 'ArrowLeft') go(state.selected - 1);
   if (e.key === ' ' && e.target.tagName !== 'BUTTON') { e.preventDefault(); $('#play').click(); }
