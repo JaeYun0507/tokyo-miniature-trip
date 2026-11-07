@@ -159,3 +159,18 @@ fieldset label{flex-direction:row;align-items:center;gap:10px;font-size:14px;col
 }
 @media (max-width:430px){.brand{display:none}.top{justify-content:center}}
 .deck-body .sheet-actions{position:sticky;bottom:0;background:#fffaf1;padding-top:10px;margin-top:10px}
+
+/* 먹을텐데 맛집 */
+#food{position:fixed;inset:0;z-index:30;background:rgba(10,12,24,.45);display:flex;align-items:flex-end;justify-content:center}
+#food[hidden]{display:none}
+#food-list section{margin-top:14px}
+#food-list h4{margin:0 0 8px;font-size:13px}
+.food-item{padding:12px 14px;margin-bottom:8px;border-radius:14px;background:#fff;border:1px solid #e3dccf;color:#1f1b16}
+.food-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.food-head b{font-size:15px}
+.tv{padding:2px 8px;border-radius:99px;background:#c8371f;color:#fff;font-size:10.5px;font-weight:600}
+.food-en{margin:2px 0 0;font-size:12px;color:#6b645a}
+.food-addr{margin:6px 0 8px;font-size:12px;color:#6b645a;line-height:1.5}
+.food-links{display:flex;flex-wrap:wrap;gap:6px 12px}
+.food-links a{font-size:12px;color:#c8371f;text-decoration:none}
+.food-links a:hover{text-decoration:underline}
