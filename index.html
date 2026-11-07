@@ -35,6 +35,7 @@
     <button class="day" data-day="4">4</button>
     <span class="days-label">3박 4일</span>
   </nav>
+  <button id="deck-btn" class="ghost deck-btn" aria-label="수집 카드"><span>카드 <b id="deck-n">0</b>/19</span><i class="deck-track"><i id="deck-bar" class="deck-fill"></i></i></button>
   <button id="open-plan" class="ghost">일정 조정</button>
 </header>
 
@@ -80,6 +81,15 @@
   </div>
 </div>
 
+<div id="deck" hidden>
+  <div class="sheet-body deck-body" role="dialog" aria-label="수집 카드">
+    <h3>모은 카드</h3>
+    <p class="deck-note">장소에 도착하면 카드를 얻어요. 이 브라우저에만 저장돼요.</p>
+    <div id="deck-list"></div>
+    <div class="sheet-actions"><button id="deck-close" class="primary">닫기</button></div>
+  </div>
+</div>
+
 <div id="empty-day" hidden>
   <span class="eyebrow">NEXT CHAPTER</span>
   <h2 id="empty-title"></h2>
@@ -89,6 +99,35 @@
 
 <div id="map-status">도쿄의 작은 거리를 준비하고 있어요…</div>
 <div class="attribution">도로·건물 지도 데이터 <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors</a> · 미니어처로 재해석 · 경로·시간은 추정</div>
+<noscript>
+<section aria-label="Day 2~4 일정 요약">
+  <h2>3박 4일 도쿄 여행 일정 (Day 2~4)</h2>
+  <h3>Day 2 · 아사쿠사에서 스카이트리까지</h3>
+  <ol>
+    <li>가미나리몬 (Kaminarimon Gate): 아사쿠사 여행의 첫 관문인 붉은 등롱 문</li>
+    <li>센소지 (Sensō-ji Temple): 나카미세 거리를 지나 본당까지</li>
+    <li>스미다 공원 (Sumida Park): 스미다강변 산책로</li>
+    <li>도쿄 스카이트리 (Tokyo Skytree): 높이 634m의 전파탑과 전망대</li>
+    <li>도쿄 소라마치 (Tokyo Solamachi): 스카이트리 아래 복합 상업시설</li>
+  </ol>
+  <h3>Day 3 · 숲에서 교차로까지, 시부야 하루</h3>
+  <ol>
+    <li>메이지 신궁 (Meiji Jingu): 도심 속 숲길과 신사</li>
+    <li>다케시타 거리 (Takeshita Street): 하라주쿠의 패션과 간식 거리</li>
+    <li>오모테산도 (Omotesandō): 가로수길과 건축물</li>
+    <li>시부야 스크램블 교차로 (Shibuya Crossing)</li>
+    <li>시부야 스카이 (Shibuya Sky): 스크램블 스퀘어 옥상 전망 시설</li>
+  </ol>
+  <h3>Day 4 · 우에노에서 아키하바라까지</h3>
+  <ol>
+    <li>도쿄국립박물관 (Tokyo National Museum)</li>
+    <li>우에노 온시공원 (Ueno Park)</li>
+    <li>아메요코 시장 (Ameya-Yokochō)</li>
+    <li>아키하바라 (Akihabara): 전자제품과 서브컬처 거리</li>
+  </ol>
+  <p>3D 지도는 JavaScript가 필요해요. 운영시간과 요금은 각 장소의 공식 사이트에서 확인해 주세요.</p>
+</section>
+</noscript>
 <div id="toast" role="status"></div>
 <script type="module" src="app.js"></script>
 </body>
