@@ -91,13 +91,13 @@ const day4Places = [
 ];
 
 export const DAYS = [
-  { day: 1, label: '도쿄타워', center: { lat: 35.658581, lon: 139.745438 }, osm: true, places: day1Places,
+  { day: 1, label: '도쿄타워', center: { lat: 35.658581, lon: 139.745438 }, osm: 'osm.json', places: day1Places,
     eyebrow: 'DAY 01 / MINATO, TOKYO', title: '도쿄타워를<br>따라 걷는 하루', sub: '공원에서 커피 한 잔, 그리고 도쿄의 하늘.', mapTitle: 'Tokyo Tower & around' },
-  { day: 2, label: '아사쿠사', places: day2Places,
+  { day: 2, label: '아사쿠사', osm: 'osm2.json', places: day2Places,
     eyebrow: 'DAY 02 / TAITO · SUMIDA', title: '아사쿠사에서<br>스카이트리까지', sub: '옛 도쿄의 사찰 거리와 강변, 그리고 가장 높은 전망대.', mapTitle: 'Asakusa & Skytree' },
-  { day: 3, label: '시부야', places: day3Places,
+  { day: 3, label: '시부야', osm: 'osm3.json', places: day3Places,
     eyebrow: 'DAY 03 / SHIBUYA · HARAJUKU', title: '숲에서 교차로까지,<br>시부야 하루', sub: '신사의 숲, 하라주쿠 거리, 그리고 스크램블 교차로.', mapTitle: 'Harajuku & Shibuya' },
-  { day: 4, label: '우에노', places: day4Places,
+  { day: 4, label: '우에노', osm: 'osm4.json', places: day4Places,
     eyebrow: 'DAY 04 / UENO · AKIHABARA', title: '우에노에서<br>아키하바라까지', sub: '박물관과 공원, 시장 거리, 마지막 쇼핑까지.', mapTitle: 'Ueno & Akihabara' },
 ];
 
