@@ -17,6 +17,12 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tokyo, by the hour · 시간으로 걷는 도쿄">
 <meta name="twitter:description" content="하루를 시간 순서로 걷는 도쿄 여행 플래너. 타임라인을 움직이면 하늘이 바뀌고 도쿄타워에 불이 켜져요.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Tokyo">
+<meta name="format-detection" content="telephone=no">
 <link rel="stylesheet" href="style.css">
 <script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
 </head>
@@ -78,7 +84,8 @@
       <label><input type="radio" name="pace" value="1" checked> 여유롭게</label>
       <label><input type="radio" name="pace" value="1.25"> 천천히 오래</label>
     </fieldset>
-    <div class="sheet-actions"><button id="sheet-cancel" class="ghost">닫기</button><button id="sheet-apply" class="primary">다시 계획하기</button></div>
+    <p id="install-note" class="deck-note" hidden></p>
+    <div class="sheet-actions"><button id="install" class="ghost" hidden>앱으로 설치</button><button id="sheet-cancel" class="ghost">닫기</button><button id="sheet-apply" class="primary">다시 계획하기</button></div>
   </div>
 </div>
 
