@@ -1,0 +1,322 @@
+{
+ "updated": "2026-11-07",
+ "phases": {
+  "1": "done: 기존 구조 분석(days.js·food.js·picks.js, 앱은 아직 이 데이터를 읽지 않음)",
+  "2": "done: 도쿄도 행정구역 62곳(특별구 23 + 시·정·촌·도서)",
+  "3": "done: 구역별 OSM 수집",
+  "4": "done: 6개 카테고리 파일로 분리(hidden_gems는 비어 있음)",
+  "5": "partial: 좌표는 OSM 값, 공식 사이트 응답만 확인",
+  "6": "partial: 중복 제거 완료, 폐업 확인은 미실시",
+  "7": "not_started: 교통 데이터 없음",
+  "8": "done: JSON 생성",
+  "9": "not_started: 앱 연동 없음"
+ },
+ "areas": {
+  "Suginami": {
+   "id": 1543055,
+   "raw": 234,
+   "status": "collected"
+  },
+  "Nakano": {
+   "id": 1543056,
+   "raw": 192,
+   "status": "collected"
+  },
+  "Shinjuku": {
+   "id": 1758858,
+   "raw": 564,
+   "status": "collected"
+  },
+  "Bunkyō": {
+   "id": 1758878,
+   "raw": 318,
+   "status": "collected"
+  },
+  "Taito": {
+   "id": 1758888,
+   "raw": 667,
+   "status": "collected"
+  },
+  "Sumida": {
+   "id": 1758891,
+   "raw": 205,
+   "status": "collected"
+  },
+  "Chuo": {
+   "id": 1758897,
+   "raw": 414,
+   "status": "collected"
+  },
+  "Meguro": {
+   "id": 1758936,
+   "raw": 119,
+   "status": "collected"
+  },
+  "Ota": {
+   "id": 1758947,
+   "raw": 0,
+   "status": "collected"
+  },
+  "Setagaya": {
+   "id": 1759474,
+   "raw": 301,
+   "status": "collected"
+  },
+  "Komae": {
+   "id": 1759475,
+   "raw": 19,
+   "status": "collected"
+  },
+  "Shibuya": {
+   "id": 1759477,
+   "raw": 425,
+   "status": "collected"
+  },
+  "Toshima": {
+   "id": 3605809,
+   "raw": 2,
+   "status": "collected"
+  },
+  "Kita": {
+   "id": 1760038,
+   "raw": 142,
+   "status": "collected"
+  },
+  "Arakawa": {
+   "id": 1760040,
+   "raw": 102,
+   "status": "collected"
+  },
+  "Itabashi": {
+   "id": 1760078,
+   "raw": 134,
+   "status": "collected"
+  },
+  "Nerima": {
+   "id": 1760119,
+   "raw": 150,
+   "status": "collected"
+  },
+  "Adachi": {
+   "id": 1760124,
+   "raw": 0,
+   "status": "collected"
+  },
+  "Minato": {
+   "id": 1761717,
+   "raw": 644,
+   "status": "collected"
+  },
+  "Katsushika": {
+   "id": 1761718,
+   "raw": 209,
+   "status": "collected"
+  },
+  "Chiyoda": {
+   "id": 1761742,
+   "raw": 507,
+   "status": "collected"
+  },
+  "Edogawa": {
+   "id": 1761743,
+   "raw": 205,
+   "status": "collected"
+  },
+  "Tachikawa": {
+   "id": 1761771,
+   "raw": 55,
+   "status": "collected"
+  },
+  "Musashino": {
+   "id": 1761804,
+   "raw": 102,
+   "status": "collected"
+  },
+  "Mitaka": {
+   "id": 1761820,
+   "raw": 52,
+   "status": "collected"
+  },
+  "Ōme": {
+   "id": 1761834,
+   "raw": 130,
+   "status": "collected"
+  },
+  "Koto": {
+   "id": 3554015,
+   "raw": 271,
+   "status": "collected"
+  },
+  "Shinagawa": {
+   "id": 3554304,
+   "raw": 196,
+   "status": "collected"
+  },
+  "Oshima": {
+   "id": 3605798,
+   "raw": 41,
+   "status": "collected"
+  },
+  "Niijima": {
+   "id": 3605834,
+   "raw": 23,
+   "status": "collected"
+  },
+  "Kozushima": {
+   "id": 3605872,
+   "raw": 30,
+   "status": "collected"
+  },
+  "Mikurajima": {
+   "id": 3606125,
+   "raw": 5,
+   "status": "collected"
+  },
+  "Miyake": {
+   "id": 3606126,
+   "raw": 24,
+   "status": "collected"
+  },
+  "Inagi": {
+   "id": 3807613,
+   "raw": 21,
+   "status": "collected"
+  },
+  "Ogasawara": {
+   "id": 4561990,
+   "raw": 74,
+   "status": "collected"
+  },
+  "Machida": {
+   "id": 5100276,
+   "raw": 130,
+   "status": "collected"
+  },
+  "Okutama": {
+   "id": 5299311,
+   "raw": 42,
+   "status": "collected"
+  },
+  "Akiruno": {
+   "id": 5301344,
+   "raw": 48,
+   "status": "collected"
+  },
+  "Hinode": {
+   "id": 5301345,
+   "raw": 12,
+   "status": "collected"
+  },
+  "Hinohara": {
+   "id": 5301346,
+   "raw": 15,
+   "status": "collected"
+  },
+  "Hamura": {
+   "id": 5301559,
+   "raw": 73,
+   "status": "collected"
+  },
+  "Hachioji": {
+   "id": 5301639,
+   "raw": 155,
+   "status": "collected"
+  },
+  "Akishima": {
+   "id": 5301640,
+   "raw": 26,
+   "status": "collected"
+  },
+  "Musashimurayama": {
+   "id": 5301641,
+   "raw": 16,
+   "status": "collected"
+  },
+  "Mizuho": {
+   "id": 5301642,
+   "raw": 30,
+   "status": "collected"
+  },
+  "Fussa": {
+   "id": 5301643,
+   "raw": 33,
+   "status": "collected"
+  },
+  "Tama": {
+   "id": 5301789,
+   "raw": 35,
+   "status": "collected"
+  },
+  "Hino": {
+   "id": 5301790,
+   "raw": 99,
+   "status": "collected"
+  },
+  "Kokubunji": {
+   "id": 5302157,
+   "raw": 36,
+   "status": "collected"
+  },
+  "Kunitachi": {
+   "id": 5302158,
+   "raw": 19,
+   "status": "collected"
+  },
+  "Kodaira": {
+   "id": 5302159,
+   "raw": 31,
+   "status": "collected"
+  },
+  "Higashiyamato": {
+   "id": 5302160,
+   "raw": 18,
+   "status": "collected"
+  },
+  "Higashimurayama": {
+   "id": 5302161,
+   "raw": 17,
+   "status": "collected"
+  },
+  "Koganei": {
+   "id": 5302326,
+   "raw": 0,
+   "status": "collected"
+  },
+  "Fuchu": {
+   "id": 5302327,
+   "raw": 44,
+   "status": "collected"
+  },
+  "Higashikurume": {
+   "id": 5302328,
+   "raw": 0,
+   "status": "collected"
+  },
+  "Kiyose": {
+   "id": 5302329,
+   "raw": 12,
+   "status": "collected"
+  },
+  "Nishitokyo": {
+   "id": 5302330,
+   "raw": 43,
+   "status": "collected"
+  },
+  "Chofu": {
+   "id": 5303898,
+   "raw": 62,
+   "status": "collected"
+  },
+  "Hachijō": {
+   "id": 5305020,
+   "raw": 18,
+   "status": "collected"
+  },
+  "Aogashima": {
+   "id": 5305021,
+   "raw": 5,
+   "status": "collected"
+  }
+ },
+ "resume_hint": "다음 단계: hidden_gems 큐레이션, 공식 자료로 verified 승격, 교통 데이터, 앱 연동(데이터 로드·지도 표시)."
+}
