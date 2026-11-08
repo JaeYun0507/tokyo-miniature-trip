@@ -697,7 +697,7 @@ function loadDay(n) {
   setPlaces(n - 1);
   if (staticGroup) { staticGroup.traverse((o) => { if (o.geometry) o.geometry.dispose(); }); scene.remove(staticGroup); }
   people.forEach((o) => scene.remove(o.g)); cars.forEach((o) => scene.remove(o.g)); people = []; cars = [];
-  graph.clear(); linked.walk = null; linked.taxi = null;
+  clearExplore(); graph.clear(); linked.walk = null; linked.taxi = null;
   seed = n === 1 ? 829 : 829 + n * 7919;
 
   let osm = d.osm ? osmData[d.osm] || null : null, lines;
@@ -731,6 +731,7 @@ function loadDay(n) {
   document.querySelectorAll('.day').forEach((b) => { const on = +b.dataset.day === n; b.classList.toggle('active', on); b.toggleAttribute('aria-current', on); });
   camGoal = null; controls.target.set(0, 35, 0); camera.zoom = 1.3 * fitZoom; camera.updateProjectionMatrix();
   refresh(); go(0, false);
+  if (state.explore) showExplore();
 }
 
 async function init() {
@@ -863,3 +864,68 @@ init().catch((e) => {
   if (!standalone && /iPhone|iPad|iPod/.test(navigator.userAgent)) { note.hidden = false; note.textContent = "아이폰·아이패드는 공유 버튼에서 '홈 화면에 추가'를 누르면 앱처럼 쓸 수 있어요."; }
   if ('serviceWorker' in navigator && location.protocol !== 'file:') addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
 })();
+
+/* ---------------------------------------------------------------
+   주변 장소: data/tokyo의 OSM 장소 중 이름이 알려진 곳을 날짜별 지도 위에 기둥으로 보여줘요
+---------------------------------------------------------------- */
+const POI_CAT = { landmarks: ['랜드마크', '#e2452b'], culture: ['문화', '#7b5fc4'], shopping: ['쇼핑', '#e0a030'], food: ['음식', '#2f9e6a'], nature: ['자연', '#4a90d9'], entertainment: ['엔터', '#d65ba3'] };
+let exploreGroup = null, exploreItems = [], exploreMeshes = {}, nearbyCache = {};
+const exploreOff = new Set();
+const poiGeo = new THREE.CylinderGeometry(3, 3, 1, 8);
+function clearExplore() {
+  if (exploreGroup) { scene.remove(exploreGroup); Object.values(exploreMeshes).forEach((m) => { m.material.dispose(); m.dispose(); }); }
+  exploreGroup = null; exploreItems = []; exploreMeshes = {}; $('#poi').hidden = true;
+}
+async function showExplore() {
+  const day = state.day;
+  try {
+    if (!nearbyCache[day]) nearbyCache[day] = await (await fetch(`./data/tokyo/nearby/day${day}.json`)).json();
+  } catch {
+    toast('주변 장소 데이터를 불러오지 못했어요.'); state.explore = false;
+    $('#explore-btn').setAttribute('aria-pressed', 'false'); $('#explore').hidden = true; return;
+  }
+  if (state.day !== day || !state.explore) return;
+  clearExplore();
+  exploreItems = nearbyCache[day].items.filter((it) => !exploreOff.has(it.c));
+  exploreGroup = new THREE.Group();
+  const byCat = {}; exploreItems.forEach((it) => { (byCat[it.c] ||= []).push(it); });
+  const m4 = new THREE.Matrix4();
+  for (const [c, list] of Object.entries(byCat)) {
+    const color = POI_CAT[c][1];
+    const mesh = new THREE.InstancedMesh(poiGeo, new THREE.MeshStandardMaterial({ color, roughness: 0.5, emissive: color, emissiveIntensity: 0.25 }), list.length);
+    list.forEach((it, k) => {
+      const p = project(it.la, it.lo);
+      m4.compose(new THREE.Vector3(p.x, 22, p.z), new THREE.Quaternion(), new THREE.Vector3(1, 44, 1)); mesh.setMatrixAt(k, m4);
+    });
+    mesh.userData.list = list; mesh.instanceMatrix.needsUpdate = true; exploreGroup.add(mesh); exploreMeshes[c] = mesh;
+  }
+  scene.add(exploreGroup);
+  $('#explore-chips').innerHTML = Object.entries(POI_CAT).map(([c, [label, color]]) =>
+    `<button data-c="${c}" aria-pressed="${!exploreOff.has(c)}"><i style="background:${color}"></i>${label}</button>`).join('');
+  $('#explore-chips').querySelectorAll('button').forEach((b) => {
+    b.onclick = () => { if (exploreOff.has(b.dataset.c)) exploreOff.delete(b.dataset.c); else exploreOff.add(b.dataset.c); showExplore(); };
+  });
+}
+$('#explore-btn').onclick = () => {
+  if (!ready) return;
+  state.explore = !state.explore;
+  $('#explore-btn').setAttribute('aria-pressed', String(state.explore)); $('#explore').hidden = !state.explore;
+  if (state.explore) showExplore(); else clearExplore();
+};
+{
+  const ray = new THREE.Raycaster(), ndc = new THREE.Vector2(); let down = null;
+  document.addEventListener('pointerdown', (e) => { if (e.target === renderer?.domElement) down = [e.clientX, e.clientY]; });
+  document.addEventListener('pointerup', (e) => {
+    if (!down || e.target !== renderer.domElement || !exploreGroup) { down = null; return; }
+    const moved = Math.hypot(e.clientX - down[0], e.clientY - down[1]); down = null; if (moved > 6) return;
+    ndc.set((e.clientX / innerWidth) * 2 - 1, -(e.clientY / innerHeight) * 2 + 1); ray.setFromCamera(ndc, camera);
+    const hit = ray.intersectObjects(exploreGroup.children)[0];
+    if (!hit) { $('#poi').hidden = true; return; }
+    const it = hit.object.userData.list[hit.instanceId], label = POI_CAT[it.c][0];
+    const maps = `https://www.google.com/maps/search/?api=1&query=${it.la},${it.lo}`;
+    $('#poi').innerHTML = `<b>${esc(it.n)}</b><span>${esc(it.j)} · ${label}</span>
+      <div class="poi-links">${it.w ? `<a href="${esc(it.w)}" target="_blank" rel="noopener">공식 사이트 ↗</a>` : ''}<a href="${maps}" target="_blank" rel="noopener">구글 지도 ↗</a></div>
+      <small>${it.v ? '공식 사이트 응답 확인됨' : '미검증'} · © OpenStreetMap contributors</small><button class="poi-x" aria-label="닫기">×</button>`;
+    $('#poi').hidden = false; $('.poi-x').onclick = () => { $('#poi').hidden = true; };
+  });
+}
