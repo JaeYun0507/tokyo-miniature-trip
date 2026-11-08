@@ -1,0 +1,3985 @@
+{
+ "schema_version": 1,
+ "category": "entertainment",
+ "generated": "2026-11-07",
+ "license": "Data © OpenStreetMap contributors, ODbL 1.0 (https://www.openstreetmap.org/copyright)",
+ "count": 88,
+ "places": [
+  {
+   "id": "osm-w967293565",
+   "name_ko": null,
+   "name_ja": "わんダフルネイチャーヴィレッジ",
+   "name_en": "Wonderful Nature Village",
+   "category": "entertainment",
+   "subcategory": "theme_park",
+   "description": null,
+   "address": "東京都 あきる野市 上代継 600",
+   "latitude": 35.716991,
+   "longitude": 139.263288,
+   "district": "Akiruno",
+   "district_ja": "あきる野市",
+   "neighborhood": "上代継",
+   "official_website": "https://www.wnv.tokyo/",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "theme_park"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/967293565",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null,
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n1789703595",
+   "name_ko": null,
+   "name_ja": "秋川渓谷瀬音の湯",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "public_bath",
+   "description": null,
+   "address": null,
+   "latitude": 35.727153,
+   "longitude": 139.187778,
+   "district": "Akiruno",
+   "district_ja": "あきる野市",
+   "neighborhood": null,
+   "official_website": "http://www.seotonoyu.jp/",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "public_bath"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/1789703595",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q11595081"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q11595081",
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-w211459573",
+   "name_ko": null,
+   "name_ja": "東京サマーランド",
+   "name_en": "Tokyo Summer Land",
+   "category": "entertainment",
+   "subcategory": "theme_park",
+   "description": null,
+   "address": "東京都 あきる野市 上代継 600",
+   "latitude": 35.717205,
+   "longitude": 139.275822,
+   "district": "Akiruno",
+   "district_ja": "あきる野市",
+   "neighborhood": "上代継",
+   "official_website": "https://www.summerland.co.jp/",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "theme_park"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/211459573",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q5368597"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q5368597",
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-w211459575",
+   "name_ko": null,
+   "name_ja": "東京サマーランド",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "theme_park",
+   "description": null,
+   "address": null,
+   "latitude": 35.717574,
+   "longitude": 139.27667,
+   "district": "Akiruno",
+   "district_ja": "あきる野市",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "theme_park"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/211459575",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [],
+   "collected_at": "2026-11-07",
+   "wikidata": null
+  },
+  {
+   "id": "osm-w238681908",
+   "name_ko": null,
+   "name_ja": "あらかわ遊園",
+   "name_en": "Arakawa Yuen Amusement Park;Arakawa Yuen (Amusement Park)",
+   "category": "entertainment",
+   "subcategory": "theme_park",
+   "description": null,
+   "address": "東京都 荒川区 西尾久 6;六丁目 35 11;35番11号",
+   "latitude": 35.753264,
+   "longitude": 139.758531,
+   "district": "Arakawa",
+   "district_ja": "荒川区",
+   "neighborhood": "西尾久",
+   "official_website": null,
+   "opening_hours": "09:00-17:00",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "theme_park"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/238681908",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q17191904"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q17191904"
+  },
+  {
+   "id": "osm-w575550226",
+   "name_ko": null,
+   "name_ja": "どうぶつ広場",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "zoo",
+   "description": null,
+   "address": null,
+   "latitude": 35.753771,
+   "longitude": 139.759139,
+   "district": "Arakawa",
+   "district_ja": "荒川区",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "zoo"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/575550226",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [],
+   "collected_at": "2026-11-07",
+   "wikidata": null
+  },
+  {
+   "id": "osm-n5387238298",
+   "name_ko": null,
+   "name_ja": "千歳湯",
+   "name_en": "chitose-yu",
+   "category": "entertainment",
+   "subcategory": "public_bath",
+   "description": null,
+   "address": null,
+   "latitude": 35.733399,
+   "longitude": 139.761994,
+   "district": "Arakawa",
+   "district_ja": "荒川区",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": "Sa-Th 15:30-00:00",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "public_bath"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/5387238298",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q110258304"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q110258304"
+  },
+  {
+   "id": "osm-n6457265895",
+   "name_ko": null,
+   "name_ja": "草津湯",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "public_bath",
+   "description": null,
+   "address": null,
+   "latitude": 35.735535,
+   "longitude": 139.799264,
+   "district": "Arakawa",
+   "district_ja": "荒川区",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": "We-Mo 15:00-23:30",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "public_bath"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/6457265895",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q113364919"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q113364919"
+  },
+  {
+   "id": "osm-n5306940697",
+   "name_ko": null,
+   "name_ja": "梅の湯",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "public_bath",
+   "description": null,
+   "address": null,
+   "latitude": 35.746779,
+   "longitude": 139.761488,
+   "district": "Arakawa",
+   "district_ja": "荒川区",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": "Tu-Su 15:00-01:00",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "public_bath"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/5306940697",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q115192307"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q115192307"
+  },
+  {
+   "id": "osm-n6709540946",
+   "name_ko": null,
+   "name_ja": "スパラクーア",
+   "name_en": "Spa LaQua",
+   "category": "entertainment",
+   "subcategory": "public_bath",
+   "description": null,
+   "address": "東京都 文京区 春日 1 1 1",
+   "latitude": 35.707133,
+   "longitude": 139.752938,
+   "district": "Bunkyō",
+   "district_ja": "文京区",
+   "neighborhood": "春日",
+   "official_website": "https://www.laqua.jp/spa/",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": "2900 JPY",
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "public_bath"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/6709540946",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q5368622"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q5368622",
+   "website_check": {
+    "status": 503,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-w345293593",
+   "name_ko": null,
+   "name_ja": "東京ドームシティアトラクションズ",
+   "name_en": "Tokyo Dome City Attractions",
+   "category": "entertainment",
+   "subcategory": "theme_park",
+   "description": null,
+   "address": "東京都 文京区 後楽一丁目 3 61",
+   "latitude": 35.704298,
+   "longitude": 139.754212,
+   "district": "Bunkyō",
+   "district_ja": "文京区",
+   "neighborhood": "後楽一丁目",
+   "official_website": null,
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "theme_park"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/345293593",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q564646"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q564646"
+  },
+  {
+   "id": "osm-n9892845482",
+   "name_ko": null,
+   "name_ja": "DareDemoRacer",
+   "name_en": "da le de mo racer Racing Simulator Shop",
+   "category": "entertainment",
+   "subcategory": "amusement_arcade",
+   "description": null,
+   "address": null,
+   "latitude": 35.700569,
+   "longitude": 139.770554,
+   "district": "Chiyoda",
+   "district_ja": "千代田区",
+   "neighborhood": null,
+   "official_website": "https://www.ddr.jp.net",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "amusement_arcade"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/9892845482",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null,
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n1915268184",
+   "name_ko": null,
+   "name_ja": "Hirose Entertainment Yard",
+   "name_en": "Hirose Entertainment Yard",
+   "category": "entertainment",
+   "subcategory": "amusement_arcade",
+   "description": null,
+   "address": "東京都 千代田区 外神田一丁目 10 5",
+   "latitude": 35.699046,
+   "longitude": 139.770838,
+   "district": "Chiyoda",
+   "district_ja": "千代田区",
+   "neighborhood": "外神田一丁目",
+   "official_website": "https://www.taito.co.jp/store/00001703",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "amusement_arcade"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/1915268184",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null,
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n13062596348",
+   "name_ko": null,
+   "name_ja": "アイドルマスターツアーズ",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "amusement_arcade",
+   "description": null,
+   "address": null,
+   "latitude": 35.698477,
+   "longitude": 139.77244,
+   "district": "Chiyoda",
+   "district_ja": "千代田区",
+   "neighborhood": null,
+   "official_website": "https://bandainamco-am.co.jp/am/vg/idolmaster-tours/location/search?q=%E3%82%A2%E3%83%88%E3%83%AC%E7%A7%8B%E8%91%89%E5%8E%9F",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "amusement_arcade"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/13062596348",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_website"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null,
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n1420785424",
+   "name_ko": null,
+   "name_ja": "東京都神代植物公園",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "zoo",
+   "description": null,
+   "address": null,
+   "latitude": 35.672145,
+   "longitude": 139.545993,
+   "district": "Chofu",
+   "district_ja": "調布市",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "zoo"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/1420785424",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [],
+   "collected_at": "2026-11-07",
+   "wikidata": null
+  },
+  {
+   "id": "osm-w161931777",
+   "name_ko": null,
+   "name_ja": "ダイヤと花の大観覧車",
+   "name_en": "Diamond and Flower Ferris Wheel",
+   "category": "entertainment",
+   "subcategory": "theme_park",
+   "description": null,
+   "address": null,
+   "latitude": 35.64394,
+   "longitude": 139.85725,
+   "district": "Edogawa",
+   "district_ja": "江戸川区",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": "10:00-19:40",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "theme_park"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/161931777",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q901219"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q901219"
+  },
+  {
+   "id": "osm-w191044572",
+   "name_ko": null,
+   "name_ja": "葛西臨海水族園",
+   "name_en": "Tokyo Sea Life Park",
+   "category": "entertainment",
+   "subcategory": "aquarium",
+   "description": null,
+   "address": null,
+   "latitude": 35.640784,
+   "longitude": 139.861951,
+   "district": "Edogawa",
+   "district_ja": "江戸川区",
+   "neighborhood": null,
+   "official_website": "https://www.tokyo-zoo.net/english/kasai/",
+   "opening_hours": "Th-Tu 09:30-17:00",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "aquarium"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/191044572",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q4925165"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q4925165",
+   "website_check": {
+    "status": 404,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-w510609121",
+   "name_ko": null,
+   "name_ja": "江戸川区自然動物園",
+   "name_en": "Edogawa Zoo",
+   "category": "entertainment",
+   "subcategory": "zoo",
+   "description": null,
+   "address": null,
+   "latitude": 35.671058,
+   "longitude": 139.858454,
+   "district": "Edogawa",
+   "district_ja": "江戸川区",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "zoo"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/510609121",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q11551063"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q11551063"
+  },
+  {
+   "id": "osm-n6596386712",
+   "name_ko": null,
+   "name_ja": "第二寿湯",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "public_bath",
+   "description": null,
+   "address": null,
+   "latitude": 35.688085,
+   "longitude": 139.903562,
+   "district": "Edogawa",
+   "district_ja": "江戸川区",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": "Sa-Th 16:00-23:00",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "public_bath"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/6596386712",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q119028465"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q119028465"
+  },
+  {
+   "id": "osm-n7705100685",
+   "name_ko": null,
+   "name_ja": "竹の湯",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "public_bath",
+   "description": null,
+   "address": null,
+   "latitude": 35.699474,
+   "longitude": 139.912212,
+   "district": "Edogawa",
+   "district_ja": "江戸川区",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": "Tu-Su 16:00-22:30",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "public_bath"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/7705100685",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q119029402"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q119029402"
+  },
+  {
+   "id": "osm-n6586874185",
+   "name_ko": null,
+   "name_ja": "宝来湯",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "public_bath",
+   "description": null,
+   "address": null,
+   "latitude": 35.675259,
+   "longitude": 139.877041,
+   "district": "Edogawa",
+   "district_ja": "江戸川区",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": "Mo-Sa 15:30-22:00",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "public_bath"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/6586874185",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q118471235"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q118471235"
+  },
+  {
+   "id": "osm-n4554760789",
+   "name_ko": null,
+   "name_ja": "京王高尾山温泉 極楽湯",
+   "name_en": "Keio Takaosan Onsen Gokurakuyu",
+   "category": "entertainment",
+   "subcategory": "public_bath",
+   "description": null,
+   "address": null,
+   "latitude": 35.632116,
+   "longitude": 139.269272,
+   "district": "Hachioji",
+   "district_ja": "八王子市",
+   "neighborhood": null,
+   "official_website": "https://www.takaosan-onsen.jp/",
+   "opening_hours": "Mo-Su,PH 08:00-22:30",
+   "closed_days": null,
+   "admission_fee": "1300 JPY",
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "public_bath"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/4554760789",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q21018985"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q21018985",
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n1420789611",
+   "name_ko": null,
+   "name_ja": "独立行政法人森林総合研究所多摩森林科学園",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "zoo",
+   "description": null,
+   "address": null,
+   "latitude": 35.646281,
+   "longitude": 139.279012,
+   "district": "Hachioji",
+   "district_ja": "八王子市",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "zoo"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/1420789611",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [],
+   "collected_at": "2026-11-07",
+   "wikidata": null
+  },
+  {
+   "id": "osm-w161786418",
+   "name_ko": null,
+   "name_ja": "羽村市動物公園",
+   "name_en": "Hamura Zoological Park",
+   "category": "entertainment",
+   "subcategory": "zoo",
+   "description": null,
+   "address": "東京都 羽村市 羽 4122",
+   "latitude": 35.767022,
+   "longitude": 139.32891,
+   "district": "Hamura",
+   "district_ja": "羽村市",
+   "neighborhood": "羽",
+   "official_website": "http://www.t-net.ne.jp/~hamura-z/",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "zoo"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/161786418",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q11610196"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q11610196",
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-r10341225",
+   "name_ko": null,
+   "name_ja": "西武園ゆうえんち",
+   "name_en": "Seibuen Yuenchi",
+   "category": "entertainment",
+   "subcategory": "theme_park",
+   "description": null,
+   "address": null,
+   "latitude": 35.769017,
+   "longitude": 139.442329,
+   "district": "Higashimurayama",
+   "district_ja": "東村山市",
+   "neighborhood": "山口",
+   "official_website": null,
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "theme_park"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/relation/10341225",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q11628910"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q11628910"
+  },
+  {
+   "id": "osm-w637680775",
+   "name_ko": null,
+   "name_ja": "多摩動物公園",
+   "name_en": "Tama Zoological Park",
+   "category": "entertainment",
+   "subcategory": "zoo",
+   "description": null,
+   "address": null,
+   "latitude": 35.65069,
+   "longitude": 139.399804,
+   "district": "Hino",
+   "district_ja": "日野市",
+   "neighborhood": null,
+   "official_website": "https://www.tokyo-zoo.net/sp/tama/",
+   "opening_hours": "Th-Tu 09:30-17:00; We off",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "zoo"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/637680775",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q1413736"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q1413736",
+   "website_check": {
+    "status": 404,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-w164689197",
+   "name_ko": null,
+   "name_ja": "よみうりランド",
+   "name_en": "Yomiuri Land",
+   "category": "entertainment",
+   "subcategory": "theme_park",
+   "description": null,
+   "address": null,
+   "latitude": 35.625301,
+   "longitude": 139.519065,
+   "district": "Inagi",
+   "district_ja": "稲城市",
+   "neighborhood": null,
+   "official_website": "https://www.yomiuriland.com/",
+   "opening_hours": "Mo-Su 10:00-20:30",
+   "closed_days": null,
+   "admission_fee": "paid (amount not recorded)",
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "theme_park"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/164689197",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q1046970"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q1046970",
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n1900408945",
+   "name_ko": null,
+   "name_ja": "Game Newton Itabashi",
+   "name_en": "Game Newton Itabashi",
+   "category": "entertainment",
+   "subcategory": "amusement_arcade",
+   "description": null,
+   "address": null,
+   "latitude": 35.777852,
+   "longitude": 139.685576,
+   "district": "Itabashi",
+   "district_ja": "板橋区",
+   "neighborhood": null,
+   "official_website": "http://game-newton.co.jp/game/",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "amusement_arcade"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/1900408945",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null,
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n6359673390",
+   "name_ko": null,
+   "name_ja": "喜久の湯",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "public_bath",
+   "description": null,
+   "address": null,
+   "latitude": 35.732757,
+   "longitude": 139.850802,
+   "district": "Katsushika",
+   "district_ja": "葛飾区",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": "Sa-Th 15:00-22:30",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "public_bath"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/6359673390",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q112872202"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q112872202"
+  },
+  {
+   "id": "osm-n6511032487",
+   "name_ko": null,
+   "name_ja": "金町湯",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "public_bath",
+   "description": null,
+   "address": null,
+   "latitude": 35.768314,
+   "longitude": 139.865841,
+   "district": "Katsushika",
+   "district_ja": "葛飾区",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": "Fr-We 15:30-22:30",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "public_bath"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/6511032487",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q109426457"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q109426457"
+  },
+  {
+   "id": "osm-n9220490352",
+   "name_ko": null,
+   "name_ja": "遊楽園",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "zoo",
+   "description": null,
+   "address": null,
+   "latitude": 35.740066,
+   "longitude": 139.857605,
+   "district": "Katsushika",
+   "district_ja": "葛飾区",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "zoo"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/9220490352",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [],
+   "collected_at": "2026-11-07",
+   "wikidata": null
+  },
+  {
+   "id": "osm-w1040431213",
+   "name_ko": null,
+   "name_ja": "aquarium de carpe",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "aquarium",
+   "description": null,
+   "address": null,
+   "latitude": 35.750102,
+   "longitude": 139.723941,
+   "district": "Kita",
+   "district_ja": "北区",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "aquarium"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/1040431213",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [],
+   "collected_at": "2026-11-07",
+   "wikidata": null
+  },
+  {
+   "id": "osm-n6457137985",
+   "name_ko": null,
+   "name_ja": "稲荷湯",
+   "name_en": "Inariyu",
+   "category": "entertainment",
+   "subcategory": "public_bath",
+   "description": null,
+   "address": null,
+   "latitude": 35.744689,
+   "longitude": 139.724474,
+   "district": "Kita",
+   "district_ja": "北区",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": "Th-Tu 14:50-01:15",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "public_bath"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/6457137985",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q106009563"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q106009563"
+  },
+  {
+   "id": "osm-n14221244620",
+   "name_ko": null,
+   "name_ja": "HOBBY BOX",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "amusement_arcade",
+   "description": null,
+   "address": null,
+   "latitude": 35.699683,
+   "longitude": 139.466109,
+   "district": "Kokubunji",
+   "district_ja": "国分寺市",
+   "neighborhood": null,
+   "official_website": "https://www.jrccd.co.jp/nonowa/shop/nishikokubunji/22555/",
+   "opening_hours": "07:00-22:30",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "amusement_arcade"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/14221244620",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_website"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null,
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n2948915145",
+   "name_ko": null,
+   "name_ja": "キッザニア東京",
+   "name_en": "Kidzania Tokyo",
+   "category": "entertainment",
+   "subcategory": "theme_park",
+   "description": null,
+   "address": "東京都 江東区 豊洲二丁目 4 9",
+   "latitude": 35.65631,
+   "longitude": 139.791349,
+   "district": "Koto",
+   "district_ja": "江東区",
+   "neighborhood": "豊洲二丁目",
+   "official_website": "https://www.kidzania.jp/tokyo/",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "theme_park"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/2948915145",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q5363436"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q5363436",
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-w813221013",
+   "name_ko": null,
+   "name_ja": "メトログリーン東陽町",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "miniature_golf",
+   "description": null,
+   "address": "1 6 4",
+   "latitude": 35.667011,
+   "longitude": 139.824356,
+   "district": "Koto",
+   "district_ja": "江東区",
+   "neighborhood": "1",
+   "official_website": "https://www.metrogreen.jp/",
+   "opening_hours": "Mo-Su 07:00-23:00",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "miniature_golf"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/813221013",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_website"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null,
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-w147428294",
+   "name_ko": null,
+   "name_ja": "こどもの国",
+   "name_en": "Kodomonokuni",
+   "category": "entertainment",
+   "subcategory": "theme_park",
+   "description": null,
+   "address": null,
+   "latitude": 35.561851,
+   "longitude": 139.491057,
+   "district": "Machida",
+   "district_ja": "町田市",
+   "neighborhood": null,
+   "official_website": "https://www.kodomonokuni.org/",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "theme_park"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/147428294",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q11266550"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q11266550",
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-w649755592",
+   "name_ko": null,
+   "name_ja": "町田リス園",
+   "name_en": "Machida Squirrel Garden",
+   "category": "entertainment",
+   "subcategory": "zoo",
+   "description": null,
+   "address": "東京都 町田市 薬師台 1丁目 733 1",
+   "latitude": 35.577979,
+   "longitude": 139.449979,
+   "district": "Machida",
+   "district_ja": "町田市",
+   "neighborhood": "薬師台",
+   "official_website": "https://www.machida-risuen.com",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "zoo"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/649755592",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q11578268"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q11578268",
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-w539538016",
+   "name_ko": null,
+   "name_ja": "アクアパーク品川",
+   "name_en": "Aqua Park Shinagawa",
+   "category": "entertainment",
+   "subcategory": "aquarium",
+   "description": null,
+   "address": "東京都 港区 高輪 4 10 30",
+   "latitude": 35.627884,
+   "longitude": 139.735272,
+   "district": "Minato",
+   "district_ja": "港区",
+   "neighborhood": "高輪",
+   "official_website": "https://www.aqua-park.jp/aqua/",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": "paid (amount not recorded)",
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "aquarium"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/539538016",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q3055859"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q3055859",
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-w328162162",
+   "name_ko": null,
+   "name_ja": "ジョイポリス",
+   "name_en": "Joypolis",
+   "category": "entertainment",
+   "subcategory": "theme_park",
+   "description": null,
+   "address": null,
+   "latitude": 35.628681,
+   "longitude": 139.775341,
+   "district": "Minato",
+   "district_ja": "港区",
+   "neighborhood": null,
+   "official_website": "https://tokyo-joypolis.com/",
+   "opening_hours": "Mo-Su 10:00-20:00",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "theme_park"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/328162162",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q11310533"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q11310533",
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n1745162765",
+   "name_ko": null,
+   "name_ja": "マクセル アクアパーク品川",
+   "name_en": "Aqua Park Shinagawa",
+   "category": "entertainment",
+   "subcategory": "aquarium",
+   "description": null,
+   "address": null,
+   "latitude": 35.628389,
+   "longitude": 139.735754,
+   "district": "Minato",
+   "district_ja": "港区",
+   "neighborhood": null,
+   "official_website": "https://www.aqua-park.jp/aqua/en/",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "aquarium"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/1745162765",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null,
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n5158749023",
+   "name_ko": null,
+   "name_ja": "レゴランド・ディスカバリー・センター",
+   "name_en": "Legoland Discovery Center",
+   "category": "entertainment",
+   "subcategory": "theme_park",
+   "description": null,
+   "address": null,
+   "latitude": 35.628817,
+   "longitude": 139.775669,
+   "district": "Minato",
+   "district_ja": "港区",
+   "neighborhood": null,
+   "official_website": "https://www.legolanddiscoverycenter.com/tokyo/",
+   "opening_hours": "Mo-Fr 10:00-18:00; Sa-Su 10:00-19:00",
+   "closed_days": null,
+   "admission_fee": "3000 JPY",
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "theme_park"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/5158749023",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q30934236"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q30934236",
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n13473346996",
+   "name_ko": null,
+   "name_ja": "台場一丁目商店街",
+   "name_en": "Daiba 1-chōme Shōtengai",
+   "category": "entertainment",
+   "subcategory": "theme_park",
+   "description": null,
+   "address": "東京都 港区 台場一丁目 6 1",
+   "latitude": 35.629285,
+   "longitude": 139.776218,
+   "district": "Minato",
+   "district_ja": "港区",
+   "neighborhood": "台場一丁目",
+   "official_website": "https://www.odaiba-decks.com/news/event/daiba1chome.html",
+   "opening_hours": "Mo-Fr 11:00-20:00; Sa-Su 11:00-21:00",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "theme_park"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/13473346996",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q11411934"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q11411934",
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n3822459246",
+   "name_ko": null,
+   "name_ja": "独立行政法人国立科学博物館附属自然教育園",
+   "name_en": "Institute for Nature Study",
+   "category": "entertainment",
+   "subcategory": "zoo",
+   "description": null,
+   "address": null,
+   "latitude": 35.636007,
+   "longitude": 139.721312,
+   "district": "Minato",
+   "district_ja": "港区",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "zoo",
+    "ticket"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/3822459246",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null
+  },
+  {
+   "id": "osm-r5411543",
+   "name_ko": null,
+   "name_ja": "井の頭自然文化園（分園）",
+   "name_en": "Inokashira nature culture garden (branch garden)",
+   "category": "entertainment",
+   "subcategory": "zoo",
+   "description": null,
+   "address": null,
+   "latitude": 35.700236,
+   "longitude": 139.57571,
+   "district": "Mitaka",
+   "district_ja": "三鷹市",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "zoo"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/relation/5411543",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null
+  },
+  {
+   "id": "osm-n1444375839",
+   "name_ko": null,
+   "name_ja": "ラウンドワン",
+   "name_en": "ROUND1",
+   "category": "entertainment",
+   "subcategory": "bowling_alley",
+   "description": null,
+   "address": "東京都 武蔵村山市 伊奈平三丁目 1 1",
+   "latitude": 35.73533,
+   "longitude": 139.382372,
+   "district": "Musashimurayama",
+   "district_ja": "武蔵村山市",
+   "neighborhood": "伊奈平三丁目",
+   "official_website": "https://www.round1.co.jp/shop/tenpo/tokyo-musashimurayama.html",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "bowling_alley"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/1444375839",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null,
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-w153789019",
+   "name_ko": null,
+   "name_ja": "井の頭自然文化園",
+   "name_en": "Inokashira Park Zoo",
+   "category": "entertainment",
+   "subcategory": "zoo",
+   "description": null,
+   "address": null,
+   "latitude": 35.700884,
+   "longitude": 139.571361,
+   "district": "Musashino",
+   "district_ja": "武蔵野市",
+   "neighborhood": null,
+   "official_website": "https://www.tokyo-zoo.net/zoo/ino/",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "zoo"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/153789019",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q10860225"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q10860225",
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-w1149013608",
+   "name_ko": null,
+   "name_ja": "吉祥寺プティット村",
+   "name_en": "Petit Mura",
+   "category": "entertainment",
+   "subcategory": "theme_park",
+   "description": null,
+   "address": null,
+   "latitude": 35.704658,
+   "longitude": 139.574728,
+   "district": "Musashino",
+   "district_ja": "武蔵野市",
+   "neighborhood": null,
+   "official_website": "https://petitmura.com",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "theme_park"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/1149013608",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null,
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-w1058118414",
+   "name_ko": null,
+   "name_ja": "ワーナー ブラザース スタジオツアー東京 - メイキング・オブ・ハリー・ポッター",
+   "name_en": "Warner Bros. Studio Tour Tokyo – The Making of Harry Potter",
+   "category": "entertainment",
+   "subcategory": "theme_park",
+   "description": null,
+   "address": null,
+   "latitude": 35.745634,
+   "longitude": 139.645657,
+   "district": "Nerima",
+   "district_ja": "練馬区",
+   "neighborhood": null,
+   "official_website": "https://www.wbstudiotour.jp/",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "theme_park"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/1058118414",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null,
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-w209563734",
+   "name_ko": null,
+   "name_ja": "豊島園 庭の湯",
+   "name_en": "Niwanoyu",
+   "category": "entertainment",
+   "subcategory": "public_bath",
+   "description": null,
+   "address": null,
+   "latitude": 35.743992,
+   "longitude": 139.647971,
+   "district": "Nerima",
+   "district_ja": "練馬区",
+   "neighborhood": null,
+   "official_website": "http://www.niwanoyu.jp/niwa/",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": "paid (amount not recorded)",
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "public_bath"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/209563734",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q10860833"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q10860833",
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n3259183358",
+   "name_ko": null,
+   "name_ja": "地鉈温泉",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "public_bath",
+   "description": null,
+   "address": null,
+   "latitude": 34.317879,
+   "longitude": 139.21601,
+   "district": "Niijima",
+   "district_ja": "新島村",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": "free",
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "public_bath",
+    "hot_spring"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/3259183358",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q11424716"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q11424716"
+  },
+  {
+   "id": "osm-w443594741",
+   "name_ko": null,
+   "name_ja": "小笠原海洋センター",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "aquarium",
+   "description": null,
+   "address": null,
+   "latitude": 27.093924,
+   "longitude": 142.203785,
+   "district": "Ogasawara",
+   "district_ja": "小笠原村",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "aquarium"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/443594741",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [],
+   "collected_at": "2026-11-07",
+   "wikidata": null
+  },
+  {
+   "id": "osm-w617752825",
+   "name_ko": null,
+   "name_ja": "青梅鉄道公園",
+   "name_en": "Ome Railway Park",
+   "category": "entertainment",
+   "subcategory": "theme_park",
+   "description": null,
+   "address": null,
+   "latitude": 35.792655,
+   "longitude": 139.263564,
+   "district": "Ōme",
+   "district_ja": "青梅市",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "theme_park"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/617752825",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null
+  },
+  {
+   "id": "osm-w519292626",
+   "name_ko": null,
+   "name_ja": "沢井市民センタープール",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "water_park",
+   "description": null,
+   "address": null,
+   "latitude": 35.804128,
+   "longitude": 139.19574,
+   "district": "Ōme",
+   "district_ja": "青梅市",
+   "neighborhood": null,
+   "official_website": "https://fep-omepool-0294.sakura.ne.jp/sawai.html",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "water_park"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/519292626",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_website"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null
+  },
+  {
+   "id": "osm-n13310152747",
+   "name_ko": null,
+   "name_ja": "都立大島動物園",
+   "name_en": "Tokyo Metropolitan Oshima Park Zoo",
+   "category": "entertainment",
+   "subcategory": "zoo",
+   "description": null,
+   "address": null,
+   "latitude": 34.760313,
+   "longitude": 139.435206,
+   "district": "Oshima",
+   "district_ja": "大島町",
+   "neighborhood": null,
+   "official_website": "https://www.soumu.metro.tokyo.lg.jp/11osima/osima/park/zoo/zoo",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "zoo"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/13310152747",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null,
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n1177156758",
+   "name_ko": null,
+   "name_ja": "NHKスタジオパーク",
+   "name_en": "NHK Studio Park",
+   "category": "entertainment",
+   "subcategory": "theme_park",
+   "description": null,
+   "address": "東京都 渋谷区 神南二丁目 2 1",
+   "latitude": 35.665115,
+   "longitude": 139.696593,
+   "district": "Shibuya",
+   "district_ja": "渋谷区",
+   "neighborhood": "神南二丁目",
+   "official_website": "https://park.tachikawaonline.jp/themepark/10_nhk.htm",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "theme_park"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/1177156758",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q10854719"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q10854719",
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n4459519589",
+   "name_ko": null,
+   "name_ja": "アドアーズ",
+   "name_en": "Adores",
+   "category": "entertainment",
+   "subcategory": "amusement_arcade",
+   "description": null,
+   "address": null,
+   "latitude": 35.661241,
+   "longitude": 139.698206,
+   "district": "Shibuya",
+   "district_ja": "渋谷区",
+   "neighborhood": null,
+   "official_website": "https://www.adores.jp/",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "amusement_arcade"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/4459519589",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null,
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-w162931814",
+   "name_ko": null,
+   "name_ja": "アザラシ館",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "aquarium",
+   "description": null,
+   "address": null,
+   "latitude": 35.588779,
+   "longitude": 139.737776,
+   "district": "Shinagawa",
+   "district_ja": "品川区",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "aquarium"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/162931814",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [],
+   "collected_at": "2026-11-07",
+   "wikidata": null
+  },
+  {
+   "id": "osm-w162931817",
+   "name_ko": null,
+   "name_ja": "しながわ水族館",
+   "name_en": "Shinagawa Aquarium",
+   "category": "entertainment",
+   "subcategory": "aquarium",
+   "description": null,
+   "address": "東京都 品川区 勝島 3丁目 2 1",
+   "latitude": 35.588635,
+   "longitude": 139.737465,
+   "district": "Shinagawa",
+   "district_ja": "品川区",
+   "neighborhood": "勝島",
+   "official_website": "https://www.aquarium.gr.jp/",
+   "opening_hours": "Mo-Fr 10:00-17:00",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "aquarium"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/162931817",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q11254393"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q11254393",
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-w137626375",
+   "name_ko": null,
+   "name_ja": "Paupau Aqua Garden",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "aquarium",
+   "description": null,
+   "address": "東京都 新宿区 新宿五丁目 17 5",
+   "latitude": 35.693179,
+   "longitude": 139.705893,
+   "district": "Shinjuku",
+   "district_ja": "新宿区",
+   "neighborhood": "新宿五丁目",
+   "official_website": "http://www.paupau.co.jp/html/english.html",
+   "opening_hours": "Mo-Fr 13:00-21:00; Sa-Su 11:00-20:00",
+   "closed_days": null,
+   "admission_fee": "paid (amount not recorded)",
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "aquarium"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/137626375",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_website"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null,
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n2197500913",
+   "name_ko": null,
+   "name_ja": "タイトーステーション",
+   "name_en": "Taito Station",
+   "category": "entertainment",
+   "subcategory": "amusement_arcade",
+   "description": null,
+   "address": "東京都 新宿区 新宿 3 22 7",
+   "latitude": 35.693262,
+   "longitude": 139.701496,
+   "district": "Shinjuku",
+   "district_ja": "新宿区",
+   "neighborhood": "新宿",
+   "official_website": "https://www.taito.co.jp/store/00001582",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "amusement_arcade"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/2197500913",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null,
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n13668099713",
+   "name_ko": null,
+   "name_ja": "ナムコ",
+   "name_en": "NAMCO",
+   "category": "entertainment",
+   "subcategory": "amusement_arcade",
+   "description": null,
+   "address": "東京都 新宿区 歌舞伎町一丁目 29 1",
+   "latitude": 35.695864,
+   "longitude": 139.700634,
+   "district": "Shinjuku",
+   "district_ja": "新宿区",
+   "neighborhood": "歌舞伎町一丁目",
+   "official_website": "https://bandainamco-am.co.jp/namco_tokyo/",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "amusement_arcade"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/13668099713",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null,
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n4691022889",
+   "name_ko": null,
+   "name_ja": "高田馬場ゲーセンミカド",
+   "name_en": "Takadanobaba Game Centre Mikado",
+   "category": "entertainment",
+   "subcategory": "amusement_arcade",
+   "description": null,
+   "address": null,
+   "latitude": 35.712702,
+   "longitude": 139.703436,
+   "district": "Shinjuku",
+   "district_ja": "新宿区",
+   "neighborhood": null,
+   "official_website": "http://mi-ka-do.net/baba/",
+   "opening_hours": "10:00-24:00",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "amusement_arcade"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/4691022889",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q118483502"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q118483502",
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n6344060189",
+   "name_ko": null,
+   "name_ja": "三の輪湯",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "public_bath",
+   "description": null,
+   "address": null,
+   "latitude": 35.71376,
+   "longitude": 139.681974,
+   "district": "Shinjuku",
+   "district_ja": "新宿区",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": "Tu-Su 15:30-01:00",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "public_bath",
+    "sauna"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/6344060189",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q121826695"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q121826695"
+  },
+  {
+   "id": "osm-n6204822794",
+   "name_ko": null,
+   "name_ja": "熱海湯",
+   "name_en": "Atami-yu",
+   "category": "entertainment",
+   "subcategory": "public_bath",
+   "description": null,
+   "address": null,
+   "latitude": 35.70055,
+   "longitude": 139.740588,
+   "district": "Shinjuku",
+   "district_ja": "新宿区",
+   "neighborhood": "神楽坂三丁目",
+   "official_website": "https://www.1010.or.jp/map/item/item-cnt-322",
+   "opening_hours": "Su-Fr 14:45-24:00; Sa off",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "public_bath"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/6204822794",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q115163749"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q115163749",
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n1998331328",
+   "name_ko": "스미다 수족관",
+   "name_ja": "すみだ水族館",
+   "name_en": "Sumida Aquarium",
+   "category": "entertainment",
+   "subcategory": "aquarium",
+   "description": null,
+   "address": "東京都 墨田区 押上 一丁目 1 2",
+   "latitude": 35.710101,
+   "longitude": 139.809334,
+   "district": "Sumida",
+   "district_ja": "墨田区",
+   "neighborhood": "押上",
+   "official_website": "https://www.sumida-aquarium.com/",
+   "opening_hours": "Mo-Fr 10:00-20:00 \"Admission ends one hour prior to closing time\"; Sa-Su 09:00-21:00 \"Admission ends one hour prior to closing time\"; PH 09:00-21:00 \"Admission ends one hour prior to closing time\"",
+   "closed_days": null,
+   "admission_fee": "2500 JPY;1800 JPY;1200 JPY;800 JPY",
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "aquarium"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/1998331328",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q8134074"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q8134074",
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n13021997838",
+   "name_ko": null,
+   "name_ja": "CLUB EXA",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "amusement_arcade",
+   "description": null,
+   "address": null,
+   "latitude": 35.696181,
+   "longitude": 139.428373,
+   "district": "Tachikawa",
+   "district_ja": "立川市",
+   "neighborhood": null,
+   "official_website": "https://wgc.me/",
+   "opening_hours": "Mo-Su 10:00-24:00",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "amusement_arcade"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/13021997838",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_website"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null,
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n13021997839",
+   "name_ko": null,
+   "name_ja": "CLUB EXA ２号館",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "amusement_arcade",
+   "description": null,
+   "address": null,
+   "latitude": 35.696197,
+   "longitude": 139.429264,
+   "district": "Tachikawa",
+   "district_ja": "立川市",
+   "neighborhood": null,
+   "official_website": "https://wgc.me/",
+   "opening_hours": "Mo-Su 10:00-24:00",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "amusement_arcade"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/13021997839",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_website"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null,
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n13022191264",
+   "name_ko": null,
+   "name_ja": "GiGO",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "amusement_arcade",
+   "description": null,
+   "address": null,
+   "latitude": 35.697219,
+   "longitude": 139.414493,
+   "district": "Tachikawa",
+   "district_ja": "立川市",
+   "neighborhood": null,
+   "official_website": "https://tempo.gendagigo.jp/",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "amusement_arcade"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/13022191264",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q7446141"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q7446141",
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-w1417119784",
+   "name_ko": null,
+   "name_ja": "WGC APPEND 別館",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "amusement_arcade",
+   "description": null,
+   "address": null,
+   "latitude": 35.696197,
+   "longitude": 139.429106,
+   "district": "Tachikawa",
+   "district_ja": "立川市",
+   "neighborhood": null,
+   "official_website": "https://wgc.me/",
+   "opening_hours": "Mo-Su 10:00-24:00",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "amusement_arcade"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/1417119784",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_website"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null,
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n13021997840",
+   "name_ko": null,
+   "name_ja": "WGC UPPER",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "amusement_arcade",
+   "description": null,
+   "address": null,
+   "latitude": 35.69645,
+   "longitude": 139.428801,
+   "district": "Tachikawa",
+   "district_ja": "立川市",
+   "neighborhood": null,
+   "official_website": "https://wgc.me/",
+   "opening_hours": "Mo-Su 10:00-24:00",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "amusement_arcade"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/13021997840",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_website"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null,
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-w1417119783",
+   "name_ko": null,
+   "name_ja": "WORLD GAME CIRCUS 本館",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "amusement_arcade",
+   "description": null,
+   "address": null,
+   "latitude": 35.696412,
+   "longitude": 139.428789,
+   "district": "Tachikawa",
+   "district_ja": "立川市",
+   "neighborhood": null,
+   "official_website": "https://wgc.me/",
+   "opening_hours": "Mo-Su 10:00-24:00",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "amusement_arcade"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/1417119783",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_website"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null,
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n10692944607",
+   "name_ko": null,
+   "name_ja": "タイトーステーション",
+   "name_en": "Taito Station",
+   "category": "entertainment",
+   "subcategory": "amusement_arcade",
+   "description": null,
+   "address": null,
+   "latitude": 35.708804,
+   "longitude": 139.774138,
+   "district": "Taito",
+   "district_ja": "台東区",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "attraction",
+    "amusement_arcade"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/10692944607",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null
+  },
+  {
+   "id": "osm-n4987930972",
+   "name_ko": null,
+   "name_ja": "ちいさな動物たちのおうち",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "zoo",
+   "description": null,
+   "address": null,
+   "latitude": 35.713635,
+   "longitude": 139.771798,
+   "district": "Taito",
+   "district_ja": "台東区",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "zoo"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/4987930972",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [],
+   "collected_at": "2026-11-07",
+   "wikidata": null
+  },
+  {
+   "id": "osm-n2584332992",
+   "name_ko": null,
+   "name_ja": "燕湯",
+   "name_en": "Tsubameyu",
+   "category": "entertainment",
+   "subcategory": "public_bath",
+   "description": null,
+   "address": null,
+   "latitude": 35.705512,
+   "longitude": 139.772858,
+   "district": "Taito",
+   "district_ja": "台東区",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": "Tu-Su 06:00-20:00",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "public_bath"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/2584332992",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q17216171"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q17216171"
+  },
+  {
+   "id": "osm-w1065775336",
+   "name_ko": "우에노 동물원",
+   "name_ja": "恩賜上野動物園",
+   "name_en": "Ueno Zoological Gardens",
+   "category": "entertainment",
+   "subcategory": "zoo",
+   "description": null,
+   "address": "東京都 台東区 上野公園 9 83",
+   "latitude": 35.715326,
+   "longitude": 139.770543,
+   "district": "Taito",
+   "district_ja": "台東区",
+   "neighborhood": "上野公園",
+   "official_website": "https://www.tokyo-zoo.net/zoo/ueno/",
+   "opening_hours": "Mo off; Tu-Su 09:30-17:00; Dec 29-Jan01",
+   "closed_days": null,
+   "admission_fee": "600 JPY",
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "zoo"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/1065775336",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q162722"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q162722",
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-w1065775338",
+   "name_ko": "우에노 동물원 (서원)",
+   "name_ja": "恩賜上野動物園（西園）",
+   "name_en": "Ueno Zoological Gardens (West Garden)",
+   "category": "entertainment",
+   "subcategory": "zoo",
+   "description": null,
+   "address": "東京都 台東区 上野公園 9 83",
+   "latitude": 35.713963,
+   "longitude": 139.770234,
+   "district": "Taito",
+   "district_ja": "台東区",
+   "neighborhood": "上野公園",
+   "official_website": null,
+   "opening_hours": "Mo-Su 09:30-17:00",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "zoo"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/1065775338",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null
+  },
+  {
+   "id": "osm-w1065775337",
+   "name_ko": "우에노 동물원 (동원)",
+   "name_ja": "恩賜上野動物園（東園）",
+   "name_en": "Ueno Zoological Gardens (East Garden)",
+   "category": "entertainment",
+   "subcategory": "zoo",
+   "description": null,
+   "address": "東京都 台東区 上野公園 9 83",
+   "latitude": 35.716396,
+   "longitude": 139.771492,
+   "district": "Taito",
+   "district_ja": "台東区",
+   "neighborhood": "上野公園",
+   "official_website": null,
+   "opening_hours": "09:30-17:00",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "zoo"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/1065775337",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null
+  },
+  {
+   "id": "osm-w509544637",
+   "name_ko": null,
+   "name_ja": "子供動物園すてっぷ",
+   "name_en": "Children's Zoo STEP",
+   "category": "entertainment",
+   "subcategory": "zoo",
+   "description": null,
+   "address": null,
+   "latitude": 35.713862,
+   "longitude": 139.771515,
+   "district": "Taito",
+   "district_ja": "台東区",
+   "neighborhood": null,
+   "official_website": "https://www.tokyo-zoo.net/zoo/ueno/childrenszoostep/",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "zoo"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/509544637",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null,
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-w229411931",
+   "name_ko": null,
+   "name_ja": "寿湯",
+   "name_en": "Kotobukiyu",
+   "category": "entertainment",
+   "subcategory": "public_bath",
+   "description": null,
+   "address": "東上野 5丁目 4 17",
+   "latitude": 35.712203,
+   "longitude": 139.782688,
+   "district": "Taito",
+   "district_ja": "台東区",
+   "neighborhood": "東上野",
+   "official_website": "http://www7.plala.or.jp/iiyudana/",
+   "opening_hours": "11:30-00:00; 00:00-01:30",
+   "closed_days": null,
+   "admission_fee": "paid (amount not recorded)",
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "public_bath"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/229411931",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q111693678"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q111693678"
+  },
+  {
+   "id": "osm-w99270201",
+   "name_ko": null,
+   "name_ja": "浅草花やしき",
+   "name_en": "Asakusa Hanayashiki",
+   "category": "entertainment",
+   "subcategory": "theme_park",
+   "description": null,
+   "address": "東京都 台東区 浅草 2丁目 28 1",
+   "latitude": 35.715529,
+   "longitude": 139.794572,
+   "district": "Taito",
+   "district_ja": "台東区",
+   "neighborhood": "浅草",
+   "official_website": "https://www.hanayashiki.net/",
+   "opening_hours": "Mo-Su 10:00-18:00",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "theme_park"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/99270201",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q863180"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q863180",
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n5387240861",
+   "name_ko": null,
+   "name_ja": "朝日湯",
+   "name_en": "Asahiyu",
+   "category": "entertainment",
+   "subcategory": "public_bath",
+   "description": null,
+   "address": null,
+   "latitude": 35.724398,
+   "longitude": 139.764495,
+   "district": "Taito",
+   "district_ja": "台東区",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": "Mo-Su 14:00-01:30",
+   "closed_days": null,
+   "admission_fee": "paid (amount not recorded)",
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "public_bath"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/5387240861",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q111537695"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q111537695"
+  },
+  {
+   "id": "osm-n4987676505",
+   "name_ko": null,
+   "name_ja": "鳥たちのおうち2",
+   "name_en": "Aviary 2",
+   "category": "entertainment",
+   "subcategory": "zoo",
+   "description": null,
+   "address": null,
+   "latitude": 35.713712,
+   "longitude": 139.771759,
+   "district": "Taito",
+   "district_ja": "台東区",
+   "neighborhood": null,
+   "official_website": null,
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "zoo"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/4987676505",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": null,
+   "verification_status": "unverified",
+   "operating_status": null,
+   "evidence": [
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null
+  },
+  {
+   "id": "osm-w28328111",
+   "name_ko": null,
+   "name_ja": "サンリオピューロランド",
+   "name_en": "Sanrio Puroland",
+   "category": "entertainment",
+   "subcategory": "theme_park",
+   "description": null,
+   "address": "東京都 多摩市 落合一丁目 31 １丁目３１",
+   "latitude": 35.624553,
+   "longitude": 139.429389,
+   "district": "Tama",
+   "district_ja": "多摩市",
+   "neighborhood": "落合一丁目",
+   "official_website": "https://www.puroland.jp/",
+   "opening_hours": "Mo-Su 09:30-17:00",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "theme_park"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/28328111",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q1133851"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q1133851",
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n1420765129",
+   "name_ko": null,
+   "name_ja": "サンシャイン国際水族館",
+   "name_en": "Sunshine Aquarium",
+   "category": "entertainment",
+   "subcategory": "aquarium",
+   "description": null,
+   "address": null,
+   "latitude": 35.729139,
+   "longitude": 139.720273,
+   "district": "Toshima",
+   "district_ja": "豊島区",
+   "neighborhood": null,
+   "official_website": "http://www.sunshinecity.co.jp/aquarium/",
+   "opening_hours": null,
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "aquarium"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/1420765129",
+     "license": "ODbL"
+    },
+    {
+     "name": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q11250698"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_wikidata",
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": "Q11250698",
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n13321786436",
+   "name_ko": null,
+   "name_ja": "ちいかわパーク",
+   "name_en": "Chiikawa Park",
+   "category": "entertainment",
+   "subcategory": "theme_park",
+   "description": null,
+   "address": null,
+   "latitude": 35.730241,
+   "longitude": 139.717305,
+   "district": "Toshima",
+   "district_ja": "豊島区",
+   "neighborhood": null,
+   "official_website": "https://chiikawapark-tokyo.jp/",
+   "opening_hours": "Mo-Su 10:00-21:00",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "theme_park"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/13321786436",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null,
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n6138055942",
+   "name_ko": null,
+   "name_ja": "ミカドゲーセン",
+   "name_en": "Mikado Game Center",
+   "category": "entertainment",
+   "subcategory": "amusement_arcade",
+   "description": null,
+   "address": null,
+   "latitude": 35.732414,
+   "longitude": 139.713596,
+   "district": "Toshima",
+   "district_ja": "豊島区",
+   "neighborhood": null,
+   "official_website": "http://mi-ka-do.net/bukuro/",
+   "opening_hours": "10:00-24:00",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "amusement_arcade"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/6138055942",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_website",
+    "osm_name_en"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null,
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  },
+  {
+   "id": "osm-n13762344503",
+   "name_ko": null,
+   "name_ja": "池袋ロサボウル",
+   "name_en": null,
+   "category": "entertainment",
+   "subcategory": "bowling_alley",
+   "description": null,
+   "address": "東京都 豊島区 西池袋一丁目 37 12",
+   "latitude": 35.732475,
+   "longitude": 139.709239,
+   "district": "Toshima",
+   "district_ja": "豊島区",
+   "neighborhood": "西池袋一丁目",
+   "official_website": "http://rosabowl.com",
+   "opening_hours": "Su-Th,PH 10:00-24:00; Fr-Sa,PH-1 day 10:00-01:00",
+   "closed_days": null,
+   "admission_fee": null,
+   "estimated_visit_minutes": null,
+   "recommended_seasons": null,
+   "tags": [
+    "bowling_alley"
+   ],
+   "photo_url": null,
+   "data_source": [
+    {
+     "name": "OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/13762344503",
+     "license": "ODbL"
+    }
+   ],
+   "verified_at": "2026-11-07",
+   "verification_status": "partially_verified",
+   "operating_status": null,
+   "evidence": [
+    "osm_website"
+   ],
+   "collected_at": "2026-11-07",
+   "wikidata": null,
+   "website_check": {
+    "status": 200,
+    "checked_at": "2026-11-07"
+   }
+  }
+ ]
+}
