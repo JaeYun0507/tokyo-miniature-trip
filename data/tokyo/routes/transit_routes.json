@@ -1,0 +1,7 @@
+{
+ "schema_version": 1,
+ "mode": "transit",
+ "status": "not_researched",
+ "note": "실제 도로 라우팅 또는 노선 데이터를 확보하지 못해 비워 두었어요. 직선거리는 도보·교통 거리로 쓰지 않아요.",
+ "routes": []
+}
