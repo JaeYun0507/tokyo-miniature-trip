@@ -209,3 +209,19 @@ button,input[type=range]{touch-action:manipulation}
 }
 @media(max-width:760px) and (max-height:620px){ #card .eyebrow,#card .sub{display:none} }
 @media(max-width:760px){ #card:not(.open) .sub{display:none} #card:not(.open) .leg{padding:8px 0} }
+
+/* 주변 장소 */
+#explore{position:fixed;z-index:11;left:50%;transform:translateX(-50%);top:calc(64px + env(safe-area-inset-top));max-width:calc(100vw - 24px)}
+#explore[hidden],#poi[hidden]{display:none}
+#explore-chips{display:flex;gap:6px;overflow-x:auto;padding:4px;scrollbar-width:none}
+#explore-chips button{display:flex;align-items:center;gap:6px;padding:8px 12px;min-height:36px;border-radius:999px;background:var(--glass);border:1px solid var(--glass-line);backdrop-filter:blur(14px);font-size:12px;white-space:nowrap;color:var(--ink)}
+#explore-chips button[aria-pressed="false"]{opacity:.45}
+#explore-chips i{width:10px;height:10px;border-radius:50%;display:block}
+#explore-btn[aria-pressed="true"]{background:var(--ink);color:var(--sky)}
+#poi{position:fixed;z-index:12;left:50%;transform:translateX(-50%);top:calc(112px + env(safe-area-inset-top));width:min(340px,calc(100vw - 24px));padding:14px 40px 12px 16px;border-radius:18px;background:var(--glass);border:1px solid var(--glass-line);backdrop-filter:blur(18px);box-shadow:0 12px 36px rgba(20,24,40,.2);display:grid;gap:4px}
+#poi b{font-size:16px;font-family:var(--serif)}
+#poi span,#poi small{font-size:12px;color:var(--ink-2)}
+.poi-links{display:flex;gap:12px;margin:4px 0}
+.poi-links a{font-size:13px;color:var(--accent-strong);font-weight:600}
+.poi-x{position:absolute;top:6px;right:6px;width:36px;height:36px;border-radius:50%;font-size:20px}
+@media(max-width:760px){#explore{top:calc(60px + env(safe-area-inset-top))}}
