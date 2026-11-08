@@ -49,6 +49,7 @@
   <button id="zoom-in" aria-label="확대">＋</button>
   <button id="zoom-out" aria-label="축소">−</button>
   <button id="overview" aria-label="도시 전체 보기" title="전체 보기">⌖</button>
+  <button id="explore-btn" aria-label="주변 장소 보기" aria-pressed="false" title="주변 장소">🧭</button>
   <button id="food-btn" aria-label="먹을텐데 맛집 목록" title="먹을텐데 맛집">🍴</button>
 </div>
 
@@ -118,6 +119,8 @@
   <button id="back-day" class="primary">첫째 날로 돌아가기</button>
 </div>
 
+<div id="explore" hidden><div id="explore-chips" role="group" aria-label="주변 장소 종류"></div></div>
+<div id="poi" hidden></div>
 <div id="map-status">도쿄의 작은 거리를 준비하고 있어요…</div>
 <div class="attribution">도로·건물 지도 데이터 <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors</a> · 미니어처로 재해석 · 경로·시간은 추정</div>
 <noscript>
