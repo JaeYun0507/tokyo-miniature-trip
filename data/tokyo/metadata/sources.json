@@ -1,0 +1,25 @@
+{
+ "sources": [
+  {
+   "name": "OpenStreetMap via Overpass API",
+   "url": "https://overpass-api.de/",
+   "license": "Data © OpenStreetMap contributors, ODbL 1.0 (https://www.openstreetmap.org/copyright)",
+   "retrieved": "2026-11-07",
+   "used_for": [
+    "coordinates",
+    "names",
+    "address tags",
+    "opening_hours tags",
+    "website tags",
+    "wikidata ids"
+   ]
+  },
+  {
+   "name": "HTTP liveness check of OSM website tags",
+   "retrieved": "2026-11-07",
+   "used_for": [
+    "partially_verified flag"
+   ]
+  }
+ ]
+}
