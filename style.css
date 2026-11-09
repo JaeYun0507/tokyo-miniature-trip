@@ -225,3 +225,6 @@ button,input[type=range]{touch-action:manipulation}
 .poi-links a{font-size:13px;color:var(--accent-strong);font-weight:600}
 .poi-x{position:absolute;top:6px;right:6px;width:36px;height:36px;border-radius:50%;font-size:20px}
 @media(max-width:760px){#explore{top:calc(60px + env(safe-area-inset-top))}}
+@media(max-width:760px){ .tools{top:calc(108px + env(safe-area-inset-top)) !important} #poi{top:calc(112px + env(safe-area-inset-top));width:calc(100vw - 116px);left:12px;transform:none} }
+@media(max-width:760px){ .tools{top:calc(106px + env(safe-area-inset-top)) !important;gap:4px} .tools button{width:40px;height:40px} }
+@media(max-width:760px){ .tools{grid-template-columns:repeat(2,40px);grid-auto-flow:row !important} }
